@@ -1,7 +1,10 @@
 import Head from 'next/head'
-import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material'
+import Navbar from 'components/Navbar'
+import Search from 'components/Search'
+
+import Cards from 'components/Cards'
+
 
 export default function Home() {
   return (
@@ -13,20 +16,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <AppBar>
-            <Toolbar sx={{ justifyContent: 'space-between' }}>
-                <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-                >
-                    Hashtable
-                </IconButton>
-                <Button color="inherit">Login</Button>
-            </Toolbar>
-        </AppBar>
+      <Navbar/>
+       <Search/>
+       <Cards/>
+       
       </main>
     </>
   )
