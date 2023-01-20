@@ -18,7 +18,7 @@ export const Hero = (props: HeroProps) => {
                 justifyContent: 'center',
                 alignItems: 'center',
             }}>
-            {props.children}
+                {props.children}
         </div>
     </>
 }
