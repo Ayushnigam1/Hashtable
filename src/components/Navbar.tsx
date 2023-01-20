@@ -5,7 +5,7 @@ import { DarkMode, LightMode } from '@mui/icons-material'
 const Navbar = () => {
     return (
         <>
-            <AppBar position='sticky' sx={{ boxShadow: 'none' }} elevation={4}>
+            <AppBar position='sticky' sx={{ boxShadow: 'none',background:"black" }} elevation={4}>
                 <Toolbar sx={{ justifyContent: 'space-between', maxWidth: "60%", margin: "auto", width: "100%"}}>
                     <Typography variant='h6' color='white'>Hashtable</Typography>
                     <Switch
