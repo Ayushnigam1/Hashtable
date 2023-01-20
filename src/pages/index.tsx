@@ -1,12 +1,11 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
-import { lightTheme } from '@/components/Theme'
 import Navbar from '@/components/Navbar'
 import Search from '@/components/Search'
 
 import Cards from '@/components/Cards'
 import { Hero } from '@/components/Hero'
-import { ThemeProvider } from '@mui/system'
+import { Typography } from '@mui/material'
 
 
 export default function Home() {
@@ -21,7 +20,15 @@ export default function Home() {
             <main className={styles.main}>
                 <Navbar />
                 <Hero>
-                    <Search />
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                        gap:"1rem"
+                    }}>
+                        <Typography variant='h4'>Stuck in a Problem?</Typography>
+                        <Search />
+                    </div>
                 </Hero>
                 <section className={styles.section}>
                     <Cards />

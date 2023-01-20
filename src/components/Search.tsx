@@ -1,47 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
 import { Close } from '@mui/icons-material';
 
 const Search = () => {
+    const [searchTerm, setSearchTerm] = useState("")
     return (
         <>
-            <FormControl
-                sx={{
-                    width: '30%',
-                    height: 'min-content',
-                    marginBottom: 10,
+            <div
+                style={{
                     backgroundColor: 'white',
-                    borderRadius: 100,
+                    borderRadius: '50px',
+                    paddingLeft: '4px',
+                    paddingRight: '4px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                }}>
+                <IconButton>
+                    <SearchIcon />
+                </IconButton>
+                <Input sx={{
+                    minWidth: '500px',
+                    height: '34px',
+                    paddingTop: '4px',
+                    fontSize: '16px'
                 }}
-                variant="standard">
-                <Input
-                    sx={{
-                        padding: "8px 8px 8px 8px",
-                        fontSize: 18
-                    }}
-                    id="standard-adornment-password"
-                    type="text"
-                    disableUnderline={true}
-                    placeholder="Search.."
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton aria-label="toggle password visibility">
-                                <Close />
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    startAdornment={
-                        <InputAdornment position="start" sx={{marginRight: "10px"}}>
-                            <IconButton aria-label="toggle password visibility">
-                                <SearchIcon />
-                            </IconButton>
-                        </InputAdornment>
-                    } />
-            </FormControl>
+                    value={searchTerm}
+                    onChange={(e) => { setSearchTerm(e.target.value) }}
+                    disableUnderline
+                />
+                <IconButton onClick={() => { setSearchTerm("") }}>
+                    <Close />
+                </IconButton>
+            </div>
         </>
     )
 }
