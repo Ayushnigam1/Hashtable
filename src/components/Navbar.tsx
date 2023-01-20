@@ -12,7 +12,7 @@ const Navbar = () => {
 
     return (
         <>
-            <AppBar position='sticky' sx={{ boxShadow: 'none' }} elevation={4}>
+            <AppBar position='fixed' sx={{ boxShadow: 'none', transition: "all 100ms ease-in-out"}} color={trigger ? 'primary': 'transparent'}>
                 <Toolbar sx={{ justifyContent: 'space-between', maxWidth: "60%", margin: "auto", width: "100%"}}>
                     <Typography variant='h6' color='white'>Hashtable</Typography>
                     <Switch

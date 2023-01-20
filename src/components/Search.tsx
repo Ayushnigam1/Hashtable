@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
 import { Close } from '@mui/icons-material';
 
-const Search = () => {
+const Search = (props: any) => {
     const [searchTerm, setSearchTerm] = useState("")
     return (
         <>
@@ -30,6 +30,7 @@ const Search = () => {
                     value={searchTerm}
                     onChange={(e) => { setSearchTerm(e.target.value) }}
                     disableUnderline
+                    {...props}
                 />
                 <IconButton onClick={() => { setSearchTerm("") }}>
                     <Close />
