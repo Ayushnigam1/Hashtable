@@ -5,8 +5,10 @@ export const AutoSearch = () => {
     return <>
         <Autocomplete
             disablePortal
-            options={[{ label: "Add two integers", id: 1 }].map(option => option.label)}
+            freeSolo
             autoComplete
+            disableClearable
+            options={[{ label: "Add two integers", id: 1 }]}
             renderInput={(params) => <Search {...params} />}
         />
     </>

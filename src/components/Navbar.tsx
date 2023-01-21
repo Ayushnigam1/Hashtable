@@ -1,28 +1,19 @@
 import React from 'react'
-import { AppBar, Switch, Toolbar, Typography, useScrollTrigger } from '@mui/material'
-import { DarkMode, LightMode } from '@mui/icons-material'
+import { TailSwitch } from './Switch'
 
 const Navbar = () => {
-
-    const trigger = useScrollTrigger({
-        disableHysteresis: true,
-        threshold: 0,
-        target: undefined
-        })
-
     return (
         <>
-            <AppBar position='fixed' sx={{ boxShadow: 'none', transition: "all 100ms ease-in-out"}} color={trigger ? 'primary': 'transparent'}>
-                <Toolbar sx={{ justifyContent: 'space-between', maxWidth: "60%", margin: "auto", width: "100%"}}>
-                    <Typography variant='h6' color='white'>Hashtable</Typography>
-                    <Switch
-                        color='default'
-                        size='medium'
-                        icon={<DarkMode />}
-                        checkedIcon={<LightMode />}
-                    />
-                </Toolbar>
-            </AppBar>
+            <header className='fixed w-full'>
+                <nav className='min-h-[64px] flex justify-between items-center h-full max-w-[120ch] m-auto'>
+                    <span className='text-xl text-white'>
+                        Hashtable
+                    </span>
+                    <span>                        
+                        <TailSwitch/>
+                    </span>
+                </nav>
+            </header>
         </>
     )
 }

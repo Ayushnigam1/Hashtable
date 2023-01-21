@@ -1,12 +1,10 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import Navbar from '@/components/Navbar'
-import Search from '@/components/Search'
 
 import Cards from '@/components/Cards'
 import { Hero } from '@/components/Hero'
-import { Typography } from '@mui/material'
-import { AutoSearch } from '@/components/AutoSearch'
+import Search from '@/components/Search'
 
 
 export default function Home() {
@@ -27,8 +25,8 @@ export default function Home() {
                         flexDirection: 'column',
                         gap: "1rem"
                     }}>
-                        <Typography variant='h4'>Stuck in a Problem?</Typography>
-                        <AutoSearch />
+                        <h4 className='text-3xl text-white'>Stuck in a Problem?</h4>
+                        <Search/>
                     </div>
                 </Hero>
                 <section className={styles.section}>
