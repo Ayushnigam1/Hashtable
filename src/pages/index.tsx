@@ -5,9 +5,18 @@ import Navbar from '@/components/Navbar'
 import Cards from '@/components/Cards'
 import { Hero } from '@/components/Hero'
 import Search from '@/components/Search'
+import { getSections } from 'lib/sections'
 
+export async function getStaticProps() {
+    const allSectionsData = getSections();
+    return {
+        props: {
+            allSectionsData
+        }
+    }
+}
 
-export default function Home() {
+export default function Home({ allSectionsData }: any) {
     return (
         <>
             <Head>
@@ -25,12 +34,20 @@ export default function Home() {
                         flexDirection: 'column',
                         gap: "1rem"
                     }}>
-                        <h4 className='text-3xl text-white'>Stuck in a Problem?</h4>
-                        <Search/>
+                        <h4 className='text-3xl text-gray'>Stuck in a Problem?</h4>
+                        <Search />
                     </div>
                 </Hero>
                 <section className={styles.section}>
-                    <Cards />
+                    <div className="grid grid-cols-3 gap-4">
+                        {
+                            allSectionsData.map((section: any, idx: number) => {
+                                return (
+                                    <Cards title={section} key={idx} />
+                                )
+                            })
+                        }
+                    </div>
                 </section>
             </main>
         </>

@@ -28,7 +28,7 @@ const Navbar = () => {
         <>
             <header className={`fixed w-full ${onTop? "": "bg-sky-500"} z-50 transition-colors`}>
                 <nav className='min-h-[64px] flex justify-between items-center h-full max-w-[120ch] m-auto'>
-                    <span className='text-xl text-white'>
+                    <span className={`text-xl ${onTop ? "text-gray": "text-white" }`}>
                         Hashtable
                     </span>
                     <span>

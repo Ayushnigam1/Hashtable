@@ -1,42 +1,18 @@
 import React from 'react'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea, Grid } from '@mui/material';
 
-const Cards = () => {
+
+const Cards = (props: any) => {
     return (
         <>
-            <Grid sx={{ flexGrow: 1 }} container spacing={2}>
-                <Grid item xs={12}>
-                    <Grid container justifyContent="center" spacing={4}>
-                        {[1, 2, 3, 4, 5, 6].map((value) => (
-                            <Grid key={value} item>
-                                <Card sx={{ maxWidth: 345 }}>
-                                    <CardActionArea>
-                                        <CardMedia
-                                            component="img"
-                                            height="140"
-                                            image="/images/cover.png"
-                                            alt="green iguana"
-                                        />
-                                        <CardContent>
-                                            <Typography gutterBottom variant="h5" component="div">
-                                                Lizard
-                                            </Typography>
-                                            <Typography variant="body2" color="text.secondary">
-                                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                                species, ranging across all continents except Antarctica
-                                            </Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Grid>
-            </Grid>
+            <div className="rounded-lg shadow-lg bg-white max-h-fit opacity-75 hover:bg-gray-300 hover:shadow-2xl hover:opacity-100">
+                <img className="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt="sections" />
+                <div className="p-6">
+                    <h5 className="text-gray-900 text-xl font-medium mb-2">{props.title}</h5>
+                    <button type="button" className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-800  transition duration-250 ease-in-out">open</button>
+                </div>
+            </div>
+
+
         </>
     )
 }
