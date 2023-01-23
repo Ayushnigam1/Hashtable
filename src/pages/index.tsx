@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import Cards from '@/components/Cards'
 import { Hero } from '@/components/Hero'
 import Search from '@/components/Search'
+import Footer from '@/components/Footer'
 import { getSections } from 'lib/sections'
 
 export async function getStaticProps() {
@@ -49,6 +50,7 @@ export default function Home({ allSectionsData }: any) {
                         }
                     </div>
                 </section>
+                <Footer/>
             </main>
         </>
     )
