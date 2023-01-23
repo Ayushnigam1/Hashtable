@@ -1,11 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FiCode, FiSearch, FiX } from 'react-icons/fi/'
 
+const ArrowDown = 40
+const ArrowUp = 38
+
 const Search = (_props: any) => {
+    // user input string
     const [searchTerm, setSearchTerm] = useState("")
+
+    // If the search box is in focus
     const [isFocused, setFocus] = useState(false)
+
+    // A reference to the outmost div of search component
     const comboBoxRef = useRef<HTMLDivElement>(null)
-    const [suggestions, setSuggestions] = useState<HTMLButtonElement[]>([])
+
+    // List of items to be brought from backend
     const [items, setItems] = useState([
         { label: "Add two integers" },
         { label: "Add two linkedList" },
@@ -13,12 +22,14 @@ const Search = (_props: any) => {
         { label: "Traversal in Graph" },
         { label: "Traverse in Tree" },
     ])
+
+    // filtered item list based on [searchTerm]
     const [filterItems, setFilterItems] = useState<any>([])
 
     // For events related to the search box
     useEffect(() => {
 
-        // If the clicked element does not lies inside the reffered element 
+        // If the clicked element does not lies inside the referred element 
         // it loses focus
         function focusLost(e: any) {
             if (comboBoxRef.current && !comboBoxRef.current.contains(e.target)) {
@@ -31,11 +42,12 @@ const Search = (_props: any) => {
         return () => {
             document.removeEventListener("mousedown", focusLost)
         }
-    }, [comboBoxRef])
+    }, [])
 
     useEffect(() => {
         setFilterItems(items.filter(item => item.label.includes(searchTerm) && searchTerm != "" && isFocused))
     }, [searchTerm, items, isFocused])
+
 
     return (
         <>
@@ -61,7 +73,6 @@ const Search = (_props: any) => {
                         filterItems.map((item: any, index: number) => {
                             return (
                                 <button
-                                    ref={ref => (suggestions[index] = ref!)}
                                     key={index}
                                     className='min-h-[40px] w-full rounded-full z-10 flex items-center gap-2 px-4 hover:bg-gray-100'
                                     onClick={(_) => setSearchTerm(item.label)}>
