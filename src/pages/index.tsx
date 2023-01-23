@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import Cards from '@/components/Cards'
 import { Hero } from '@/components/Hero'
 import Search from '@/components/Search'
+import Footer from '@/components/Footer'
 
 
 export default function Home() {
@@ -32,6 +33,7 @@ export default function Home() {
                 <section className={styles.section}>
                     <Cards />
                 </section>
+                <Footer/>
             </main>
         </>
     )
