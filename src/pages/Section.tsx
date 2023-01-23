@@ -1,70 +1,45 @@
 import Navbar from '../components/Navbar'
 import React from 'react'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea, Grid } from '@mui/material';
-import Box from '@mui/material/Box';
+
 
 const Section = () => {
     return (
         <>
             <Navbar />
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <h1>Section Name</h1>
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "0px 0 50px 0px" }}>
 
-                <Card sx={{ maxWidth: 700 }}>
-                    <CardActionArea>
+            <div className=" z-0 flex justify-center">
+          <div className="relative top-20 flex-col">
+            <div className='m-5 mb-10 '>
+          <h1 className='text-3xl mb-3'>Section Name</h1>
+            <div className="rounded-lg max-w-xl max-h-fit bg-gray-300 shadow-xl p-5">
+     <p className="text-gray-700 text-base mb-4 text-justify">
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis deserunt inventore deleniti sequi assumenda voluptates nulla dolore sed reiciendis culpa.
+     </p>
+   </div>
+   </div>
+   {[1,2,3].map((item)=>(
+    <div key={item}>
+   <div className='m-5'>
+          <h1 className='text-2xl mb-3'>Introduction</h1>
+            <div className="rounded-lg max-w-lg max-h-fit bg-gray-300 shadow-lg  p-3">
+     <p className="text-gray-700 text-base mb-4 text-justify">
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis deserunt inventore deleniti sequi assumenda voluptates nulla dolore sed reiciendis culpa.
+     </p>
+   </div>
+   </div>
+   <div className='m-5'>
 
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Lizard
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                species, ranging across all continents except Antarctica
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <h1>Introduction</h1>
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "0px 0 50 0px" }}>
-                <Card sx={{ maxWidth: 600 }}>
-                    <CardActionArea>
+            <div className="rounded-lg max-w-lg max-h-fit bg-gray-300 shadow-lg  p-3">
+     <p className="text-gray-700 text-base mb-4">
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis deserunt inventore deleniti sequi assumenda voluptates nulla dolore sed reiciendis culpa.
+     </p>
+   </div>
+   </div>
+   </div>
+   ))}
+   </div>
+</div>
 
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Lizard
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                species, ranging across all continents except Antarctica
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "50px" }}>
-                <Card sx={{ maxWidth: 600 }}>
-                    <CardActionArea>
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Lizard
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                species, ranging across all continents except Antarctica
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-            </Box>
         </>
     )
 }

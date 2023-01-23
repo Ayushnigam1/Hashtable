@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
-    "@mui/icons-material": "^5.11.0",
     "@next/font": "13.1.2",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
