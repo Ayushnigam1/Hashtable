@@ -34,7 +34,6 @@ export async function getQuestionById(question: string) {
         .process(matterResult.content)
 
     const content = processedContent.toString()
-    console.log(content)
 
     return {
         ...matterResult.data,
