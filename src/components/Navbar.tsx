@@ -26,7 +26,7 @@ const Navbar = () => {
 
     return (
         <>
-            <header className={`fixed w-full ${onTop? "": "bg-sky-500"} z-50 transition-colors`}>
+            <header className={`fixed w-full ${onTop? "": "bg-sky-500"} z-50 transition-colors top-0`}>
                 <nav className='min-h-[64px] flex justify-between items-center h-full max-w-[120ch] m-auto'>
                     <span className={`text-xl ${onTop ? "text-gray": "text-white" }`}>
                         Hashtable

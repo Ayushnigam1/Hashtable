@@ -1,23 +1,43 @@
 import fs from 'fs'
 import path from 'path'
-import matter from 'gray-matter';
+import matter from 'gray-matter'
+import { remark } from 'remark'
+import html from "remark-html"
 
 const questionDirectory = path.join(process.cwd(), 'questions')
 
 export function getQuestions() {
     const fileNames = fs.readdirSync(questionDirectory)
     const allQuestions = fileNames.map((fileName) => {
-        const id=fileName.replace(/\.md$/, '');
-         // Read markdown file as string
-    const fullPath = path.join(questionDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+        const id = fileName.replace(/\.md$/, '');
+        // Read markdown file as string
+        const fullPath = path.join(questionDirectory, fileName);
+        const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents);
+        // Use gray-matter to parse the post metadata section
+        const matterResult = matter(fileContents);
         return {
             id,
             ...matterResult.data,
         }
     })
     return allQuestions
+}
+
+export async function getQuestionById(question: string) {
+    const filePath = path.join(questionDirectory, `${question}.md`)
+    const fileContents = fs.readFileSync(filePath, 'utf8')
+    const matterResult = matter(fileContents)
+
+    const processedContent = await remark()
+        .use(html)
+        .process(matterResult.content)
+
+    const content = processedContent.toString()
+    console.log(content)
+
+    return {
+        ...matterResult.data,
+        content
+    }
 }
