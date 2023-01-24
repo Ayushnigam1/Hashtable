@@ -10,7 +10,7 @@ import {
 const Footer = () => {
   return (
     <>
-      <footer className=" relative top-20 text-center lg:text-left bg-gray-200 text-blue-600">
+      <footer className="relative top-20 mt-5 text-center lg:text-left bg-sky-100 text-blue-600">
         <div className="flex justify-center items-center lg:justify-between p-6 border-b border-blue-300">
           <div className="mr-12  lg:block">
             <span className="text-lg text-blue-900 font-bold">Hashtable</span>
