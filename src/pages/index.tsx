@@ -37,7 +37,7 @@ export default function Home({ allSectionsData }: any) {
                             gap: "1rem",
                         }}
                     >
-                        <h4 className="text-3xl text-gray">Stuck in a Problem?</h4>
+                        <h4 className="prose text-3xl ">Stuck in a Problem?</h4>
                         <Search />
                     </div>
                 </Hero>
