@@ -3,6 +3,7 @@ import React from "react";
 import Footer from "@/components/Footer";
 import { getQuestionById, getQuestions } from "lib/question";
 import Head from "next/head";
+import { Switch } from "@headlessui/react";
 
 export async function getStaticPaths() {
     const questions = getQuestions();
@@ -30,9 +31,11 @@ const Question = ({ title, date, content }: any) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
+               
                 <Navbar />
                 <section className={"max-w-[70ch] m-auto mt-[100px]"}>
-                    <article className="prose" dangerouslySetInnerHTML={{ __html: content }}>
+                    
+                    <article className="prose dark:prose-invert" dangerouslySetInnerHTML={{ __html: content }}>
                     </article>
                 </section>
                 <Footer />
