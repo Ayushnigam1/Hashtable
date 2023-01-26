@@ -52,7 +52,7 @@ const Search = (_props: any) => {
     return (
         <>
             <div
-                className='prose relative flex justify-center items-center rounded-full min-h-[40px] min-w-[600px] border border-1 border-sky-200'
+                className='relative flex justify-center items-center rounded-full min-h-[40px] min-w-[600px] bg-white dark:text-gray-800'
                 ref={comboBoxRef}>
 
                 <span className='p-3 hover:bg-gray-100 rounded-full relative z-20'>

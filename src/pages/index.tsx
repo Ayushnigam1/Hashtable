@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
 import Navbar from "@/components/Navbar";
 
 import Cards from "@/components/Cards";
@@ -9,7 +8,7 @@ import Footer from "@/components/Footer";
 import { getSections } from "lib/sections";
 
 export async function getStaticProps() {
-    const allSectionsData = getSections();
+    const allSectionsData = await getSections();
     return {
         props: {
             allSectionsData,
@@ -37,7 +36,7 @@ export default function Home({ allSectionsData }: any) {
                             gap: "1rem",
                         }}
                     >
-                        <h4 className="prose text-3xl ">Stuck in a Problem?</h4>
+                        <h4 className="text-3xl ">Stuck in a Problem?</h4>
                         <Search />
                     </div>
                 </Hero>

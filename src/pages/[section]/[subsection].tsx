@@ -1,26 +1,35 @@
 import Navbar from "@/components/Navbar";
 import React from "react";
 import Footer from "@/components/Footer";
-import { getQuestionById, getQuestions } from "lib/question";
 import Head from "next/head";
+import { getSections, getSubsectionPost, getSubSections } from "lib/sections";
 
 export async function getStaticPaths() {
-    const questions = getQuestions();
-    const paths = questions.map(post => ({
-        params: { question: post.id }
-    }))
-    return { paths, fallback: false }
+    const sections = await getSections()
+    const allPaths: any = []
+    sections.forEach(async section => {
+        const subSections = await getSubSections(section)
+        subSections?.forEach(subsection => {
+            allPaths.push({ params: { section, subsection } })
+        })
+    })
+    return {
+        paths: allPaths,
+        fallback: false
+    }
 }
 
 export async function getStaticProps({ params }: any) {
-    const questionData = await getQuestionById(params.question);
+    const content = await getSubsectionPost(params.section, params.subsection)
+
     return {
         props: {
-            ...questionData
-        },
-    };
+            ...content
+        }
+    }
 }
-const Question = ({ title, date, content }: any) => {
+
+const Subsection = ({ title, content }: any) => {
     return (
         <>
             <Head>
@@ -30,16 +39,15 @@ const Question = ({ title, date, content }: any) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-               
                 <Navbar />
                 <section className={"max-w-[70ch] m-auto mt-[100px]"}>
-                    <article className="prose dark:prose-invert" dangerouslySetInnerHTML={{ __html: content }}>
+                    <article className='prose dark:prose-invert' dangerouslySetInnerHTML={{ __html: content }}>
                     </article>
                 </section>
-                <Footer />
             </main>
+            <Footer />
         </>
-    );
-};
+    )
+}
 
-export default Question;
+export default Subsection;
