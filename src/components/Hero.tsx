@@ -7,7 +7,7 @@ export interface HeroProps {
 
 export const Hero = (props: HeroProps) => {
     return <>
-        <div className="h-[600px] flex bg-cover bg-center flexm justify-center items-center bg-sky-100"
+        <div className="h-[600px] flex bg-cover bg-center flexm justify-center items-center bg-sky-100 dark:bg-gray-800"
             style={{
                 backgroundImage: `url(${props.background})`,
             }}>

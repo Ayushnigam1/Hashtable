@@ -1,13 +1,60 @@
-import fs from 'fs'
+import fs, { readdirSync } from 'fs'
+import matter from 'gray-matter'
 import path from 'path'
+import { remark } from 'remark'
+import html from 'remark-html'
 
 const sectionDirectory = path.join(process.cwd(), 'content')
 
-export function getSections() {
-    const fileNames = fs.readdirSync(sectionDirectory)
-    const allSections = fileNames.map((fileName) => {
-        const section = fileName
+export async function getSections() {
+    const sections = fs.readdirSync(sectionDirectory)
+    const allSections = sections.map((sectionName) => {
+        const section = sectionName
         return section
     })
     return allSections
+}
+
+export async function getSubSections(section: string) {
+    try {
+        const subSectionPath = path.join(sectionDirectory, section, 'subsection')
+        const subSectionsNames = readdirSync(subSectionPath).map(subsectionName => subsectionName.replace(/\.md$/, ''))
+        return subSectionsNames
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export async function getSectionIndex(section: string) {
+    const sectionIndex = path.join(sectionDirectory, section, 'index.md')
+    const fileContents = fs.readFileSync(sectionIndex, 'utf8')
+    const matterResult = matter(fileContents)
+
+    const processedContent = await remark()
+        .use(html)
+        .process(matterResult.content)
+
+    const content = processedContent.toString()
+
+    return {
+        ...matterResult.data,
+        content
+    }
+}
+
+export async function getSubsectionPost(section: string, subsection: string) {
+    const subSectionPath = path.join(sectionDirectory, section, 'subsection', `${subsection}.md`)
+    const subSectionContent = fs.readFileSync(subSectionPath, 'utf8')
+    const matterResult = matter(subSectionContent)
+
+    const processedContent = await remark()
+        .use(html)
+        .process(matterResult.content)
+
+    const content = processedContent.toString()
+
+    return {
+        ...matterResult.data,
+        content
+    }
 }
