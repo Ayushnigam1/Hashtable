@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { getQuestionById, getQuestions } from "lib/question";
 import Head from "next/head";
 import { Switch } from "@headlessui/react";
+import 'mathjax'
 
 export async function getStaticPaths() {
     const questions = getQuestions();
