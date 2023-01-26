@@ -56,7 +56,7 @@ const Search = (_props: any) => {
     <>
     <div className="w-screen flex justify-center ">
       <div
-        className="relative flex justify-center items-center rounded-full min-h-[40px] w-[80%] bg-white dark:text-gray-800"
+        className="relative flex justify-center items-center rounded-full min-h-[40px] w-[80%] sm:w-[60%] bg-white dark:text-gray-800"
         ref={comboBoxRef}
       >
         <span className="p-3 hover:bg-gray-100 rounded-full relative z-20">
@@ -75,7 +75,7 @@ const Search = (_props: any) => {
           <FiX className="" size={18} />
         </button>
         <div
-          className={`absolute w-fit z-10 top-0 border-1 rounded-[20px] bg-white ${
+          className={`absolute w-full z-10 top-0 border-1 rounded-[20px] bg-white ${
             isFocused ? "drop-shadow-md" : ""
           }`}
         >
