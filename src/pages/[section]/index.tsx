@@ -30,7 +30,7 @@ const Section = ({ title, content }: any) => {
             </Head>
             <main>
                 <Navbar />
-                <section className={"max-w-[70ch] m-auto mt-[100px]"}>
+                <section className="max-w-[70ch] m-auto mt-[100px]">
                     <article className='prose dark:prose-invert' dangerouslySetInnerHTML={{__html: content}}>
                     </article>
                 </section>

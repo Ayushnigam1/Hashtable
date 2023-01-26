@@ -36,12 +36,12 @@ export default function Home({ allSectionsData }: any) {
                             gap: "1rem",
                         }}
                     >
-                        <h4 className="text-3xl ">Stuck in a Problem?</h4>
+                        <h4 className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl">Stuck in a Problem?</h4>
                         <Search />
                     </div>
                 </Hero>
-                <section className={"max-w-[60%] m-auto mt-4"}>
-                    <div className="grid grid-cols-3 gap-4">
+                <section className="max-w-[80%] m-auto mt-4">
+                    <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 gap-4">
                         {allSectionsData.map((section: any, idx: number) => {
                             return <Cards title={section} key={idx} />;
                         })}

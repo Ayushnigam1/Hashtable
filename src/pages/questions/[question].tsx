@@ -32,8 +32,8 @@ const Question = ({ title, date, content }: any) => {
             <main>
                
                 <Navbar />
-                <section className={"max-w-[70ch] m-auto mt-[100px]"}>
-                    <article className="prose dark:prose-invert" dangerouslySetInnerHTML={{ __html: content }}>
+                <section className="flex justify-center mt-[100px]">
+                    <article className="prose dark:prose-invert w-[80%]" dangerouslySetInnerHTML={{ __html: content }}>
                     </article>
                 </section>
                 <Footer />

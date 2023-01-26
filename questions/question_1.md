@@ -7,6 +7,8 @@ date: "2020-01-01"
 
 Paragraphs are separated by a blank line.
 
+<mark style="background-color: #FFFF00">Highlighted text</mark> 
+
 2nd paragraph. _Italic_, **bold**, and `monospace`.
 Itemized lists look like:
 
@@ -64,7 +66,7 @@ for i in range(10):
 
 ### Add latex
 
-This is an inline equation: $x = y^2$
+This is an inline equation: $$x = y^2$$
 
 ### An h3 header
 
@@ -101,12 +103,10 @@ doc](#an-h2-header). Here's a footnote [^1].
 [^1]: Footnote text goes here.
 
 Tables can look like this:
-
-| size |  material   |    color    |
-| :--: | :---------: | :---------: |
-|  9   |   leather   |    brown    |
-|  10  | hemp canvas |   natural   |
-|  11  |    glass    | transparent |
+| Syntax | Description |
+| ----------- | ----------- |
+| Header | Title |
+| Paragraph | Text |
 
 Table: Shoes, their sizes, and what they're made of
 

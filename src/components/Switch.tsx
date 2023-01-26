@@ -35,12 +35,12 @@ export const TailSwitch = () => {
                 <span
                     aria-hidden="true"
                     className={`${enabled ? "translate-x-4" : "translate-x-0"}
-            pointer-events-none inline-block  h-[18px] w-[18px] transform rounded-full shadow-lg ring-0 transition duration-200 ease-in-out`}
+            pointer-events-none inline-block  h-[16px] w-[16px] transform rounded-full shadow-lg ring-0 transition duration-200 ease-in-out`}
                 >
                     {enabled ? (
-                        <FiMoon className="text-white" size={16} />
+                        <FiMoon className="text-white" size={15}  />
                     ) : (
-                        <FiSun className="text-white" size={16} />
+                        <FiSun className="text-white" size={15} />
                     )}
                 </span>
 
