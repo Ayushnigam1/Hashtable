@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import { getSections } from "lib/sections";
 
 export async function getStaticProps() {
-    const allSectionsData = getSections();
+    const allSectionsData = await getSections();
     return {
         props: {
             allSectionsData,

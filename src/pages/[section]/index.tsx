@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { getSectionIndex, getSections } from 'lib/sections'
 
 export async function getStaticPaths() {
-    const sections = getSections();
+    const sections = await getSections();
     const paths = sections.map(section => ({
         params: { section }
     }))
