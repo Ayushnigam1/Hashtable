@@ -1,8 +1,10 @@
 import Navbar from "@/components/Navbar";
-import React from "react";
+import React,{useEffect} from "react";
 import Footer from "@/components/Footer";
 import { getQuestionById, getQuestions } from "lib/question";
 import Head from "next/head";
+import hljs from 'highlight.js'
+import 'highlight.js/styles/github-dark.css'
 
 export async function getStaticPaths() {
     const questions = getQuestions();
@@ -21,6 +23,9 @@ export async function getStaticProps({ params }: any) {
     };
 }
 const Question = ({ title, date, content }: any) => {
+    useEffect(() => {
+        hljs.highlightAll()
+    }, [])
     return (
         <>
             <Head>

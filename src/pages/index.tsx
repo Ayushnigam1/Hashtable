@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
-
 import Cards from "@/components/Cards";
 import { Hero } from "@/components/Hero";
 import Search from "@/components/Search";
