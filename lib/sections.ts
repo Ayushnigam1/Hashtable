@@ -5,10 +5,9 @@ import { remark } from 'remark'
 import { unified } from 'unified'
 import parse from 'remark-parse'
 import rehype from 'remark-parse'
-import katex from 'rehype-katex'
-import math from 'remark-math'
+
 import html from 'remark-html'
-import stringify from 'rehype-stringify'
+
 
 const sectionDirectory = path.join(process.cwd(), 'content')
 

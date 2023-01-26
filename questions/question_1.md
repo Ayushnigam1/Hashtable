@@ -5,9 +5,7 @@ date: "2020-01-01"
 
 # Question 1 - Add two linked List
 
-Paragraphs are separated by a blank line.
-
-<mark style="background-color: #FFFF00">Highlighted text</mark> 
+Paragraphs are separated by a blank line.<mark>very important words</mark>.
 
 2nd paragraph. _Italic_, **bold**, and `monospace`.
 Itemized lists look like:
