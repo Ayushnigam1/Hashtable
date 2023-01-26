@@ -2,9 +2,6 @@ import fs, { readdirSync } from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 import { remark } from 'remark'
-import { unified } from 'unified'
-import parse from 'remark-parse'
-import rehype from 'remark-parse'
 
 import html from 'remark-html'
 
@@ -26,7 +23,6 @@ export async function getSubSections(section: string) {
         const subSectionsNames = readdirSync(subSectionPath).map(subsectionName => subsectionName.replace(/\.md$/, ''))
         return subSectionsNames
     } catch (err) {
-        console.log(err)
     }
 }
 

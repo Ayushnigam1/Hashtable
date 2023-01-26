@@ -1,7 +1,9 @@
 import Navbar from '@/components/Navbar'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Footer from '@/components/Footer'
 import Head from 'next/head'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/github-dark.css'
 import { getSectionIndex, getSections } from 'lib/sections'
 
 export async function getStaticPaths() {
@@ -20,6 +22,9 @@ export async function getStaticProps({ params }: any) {
 }
 
 const Section = ({ title, content }: any) => {
+    useEffect(() => {
+        hljs.highlightAll()
+    }, [])
     return (
         <>
             <Head>
@@ -30,8 +35,10 @@ const Section = ({ title, content }: any) => {
             </Head>
             <main>
                 <Navbar />
-                <section className={"max-w-[70ch] m-auto mt-[100px]"}>
-                    <article className='prose dark:prose-invert' dangerouslySetInnerHTML={{__html: content}}>
+
+                <section className="max-w-[70ch] m-auto mt-[100px]">
+                    <article className='prose dark:prose-invert' dangerouslySetInnerHTML={{ __html: content }}>
+
                     </article>
                 </section>
             </main>
