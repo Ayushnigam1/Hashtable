@@ -10,7 +10,7 @@ const sectionDirectory = path.join(process.cwd(), 'content')
 
 export async function getSections() {
     const sections = fs.readdirSync(sectionDirectory)
-    const allSections = sections.map((sectionName) => {
+    const allSections: string[] = sections.map((sectionName) => {
         const section = sectionName
         return section
     })
@@ -26,7 +26,11 @@ export async function getSubSections(section: string) {
     }
 }
 
-export async function getSectionIndex(section: string) {
+export interface Section {
+    [key: string]: any,
+    content: string,
+}
+export async function getSectionIndex(section: string): Promise<Section> { 
     const sectionIndex = path.join(sectionDirectory, section, 'index.md')
     const fileContents = fs.readFileSync(sectionIndex, 'utf8')
     const matterResult = matter(fileContents)

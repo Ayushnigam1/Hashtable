@@ -2,8 +2,8 @@
 title: Sample Section
 ---
 
-A Sample Section
-============
+
+# Sample Section
 
 Paragraphs are separated by a blank line.
 
@@ -29,8 +29,7 @@ Unicode is supported. ☺
 
 
 
-An h2 header
-------------
+## An h2 header
 
 Here's a numbered list:
 
