@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FiCode, FiSearch, FiX } from "react-icons/fi/";
+import Router from "next/router";
 
 const Search = (_props: any) => {
     // user input string
     const [searchTerm, setSearchTerm] = useState("");
+    const [val,setval]=useState("");
 
     // If the search box is in focus
     const [isFocused, setFocus] = useState(false);
@@ -11,11 +13,11 @@ const Search = (_props: any) => {
     // A reference to the outmost div of search component
     const comboBoxRef = useRef<HTMLDivElement>(null);
 
-    // List of items to be brought from backend
+    // List of items to be brought from backendl
     const [items, setItems] = useState([
-        { label: "Add two integers" },
-        { label: "Add two linkedList" },
-        { label: "Add two decimals" },
+        { label: "dynamic_programming" },
+        { label: "Graph" },
+        { label: "Trees" },
         { label: "Traversal in Graph" },
         { label: "Traverse in Tree" },
     ]);
@@ -49,20 +51,25 @@ const Search = (_props: any) => {
         );
     }, [searchTerm, items, isFocused]);
 
+    const handleclick=()=>{
+       
+        Router.push(`/search?keyword=${searchTerm}`);
+    }
     return (
         <>
             <div
                 className="relative flex justify-center items-center rounded-full min-h-[40px] max-w-[600px] w-[100%] bg-white dark:text-gray-800"
                 ref={comboBoxRef}
             >
-                <span className="p-3 hover:bg-gray-100 rounded-full relative z-20">
+                <button className="p-3 hover:bg-gray-100 rounded-full relative z-20" onClick={handleclick}>
                     <FiSearch size={18} />
-                </span>
+                </button>
                 <input
                     className="flex-grow min-h-full outline-none z-20 bg-transparent"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onFocus={(_) => setFocus(true)}
+                    
                 />
                 <button
                     className="p-3 hover:bg-gray-100 rounded-full z-20"
