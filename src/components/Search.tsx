@@ -46,7 +46,7 @@ const Search = (_props: any) => {
         setFilterItems(
             items.filter(
                 (item) =>
-                    item.label.includes(searchTerm) && searchTerm != "" && isFocused
+                    item.label.toLowerCase().includes(searchTerm) && searchTerm != "" && isFocused
             )
         );
     }, [searchTerm, items, isFocused]);
@@ -57,10 +57,12 @@ const Search = (_props: any) => {
     }
     return (
         <>
+          
             <div
                 className="relative flex justify-center items-center rounded-full min-h-[40px] max-w-[600px] w-[100%] bg-white dark:text-gray-800"
                 ref={comboBoxRef}
             >
+             
                 <button className="p-3 hover:bg-gray-100 rounded-full relative z-20" onClick={handleclick}>
                     <FiSearch size={18} />
                 </button>
@@ -69,7 +71,7 @@ const Search = (_props: any) => {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onFocus={(_) => setFocus(true)}
-                    
+                   
                 />
                 <button
                     className="p-3 hover:bg-gray-100 rounded-full z-20"
@@ -94,7 +96,9 @@ const Search = (_props: any) => {
                         );
                     })}
                 </div>
+              
             </div>
+            
         </>
     );
 };
