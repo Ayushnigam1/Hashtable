@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import Search from "@/components/Search";
 import Footer from "@/components/Footer";
 import { getSectionIndex, getSections, Section } from "lib/sections";
+import { Tags } from "@/components/Tags";
 
 export async function getStaticProps() {
     const sections = await getSections();
@@ -38,6 +39,7 @@ export default function Home({ data }: { data: Section[] }) {
                     <h4 className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl">Stuck in a Problem?</h4>
                     <Search />
                 </Hero>
+                <Tags/>
                 <section className="xl:max-w-[120ch] mx-4 mt-4 xl:mx-auto">
                     <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 gap-4">
                         {
