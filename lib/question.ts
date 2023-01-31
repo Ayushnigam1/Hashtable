@@ -7,6 +7,7 @@ import showdown from 'showdown'
 
 const questionDirectory = path.join(process.cwd(), 'questions')
 
+// Returns question with id and frontmatter
 export function getQuestions() {
     const fileNames = fs.readdirSync(questionDirectory)
     const allQuestions = fileNames.map((fileName) => {
@@ -25,6 +26,7 @@ export function getQuestions() {
     return allQuestions
 }
 
+// Returns question with id and content
 export async function getQuestionById(question: string) {
     const filePath = path.join(questionDirectory, `${question}.md`)
     const fileContents = fs.readFileSync(filePath, 'utf8')
