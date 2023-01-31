@@ -40,9 +40,11 @@ export default function Home({ data }: { data: Section[] }) {
                 </Hero>
                 <section className="xl:max-w-[120ch] mx-4 mt-4 xl:mx-auto">
                     <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 gap-4">
-                        {data.map((section: Section, idx: number) => {
-                            return <Cards data={section} key={idx} />;
-                        })}
+                        {
+                            data.map((section: Section, idx: number) => {
+                                return <Cards data={section} key={idx} />;
+                            })
+                        }
                     </div>
                 </section>
                 <Footer />

@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from "remark-html"
+import showdown from 'showdown'
 
 const questionDirectory = path.join(process.cwd(), 'questions')
 
@@ -29,9 +30,9 @@ export async function getQuestionById(question: string) {
     const fileContents = fs.readFileSync(filePath, 'utf8')
     const matterResult = matter(fileContents)
 
-    const processedContent = await remark()
-        .use(html)
-        .process(matterResult.content)
+    var mdconverter = new showdown.Converter()
+
+    const processedContent = mdconverter.makeHtml(matterResult.content)
 
     const content = processedContent.toString()
 

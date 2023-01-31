@@ -1,10 +1,11 @@
 import Navbar from '@/components/Navbar'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '@/components/Footer'
 import Head from 'next/head'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github-dark.css'
 import { getSectionIndex, getSections } from 'lib/sections'
+import { BreadCrumbs } from '@/components/BreadCrumbs'
 
 export async function getStaticPaths() {
     const sections = await getSections();
@@ -35,8 +36,9 @@ const Section = ({ title, content }: any) => {
             </Head>
             <main>
                 <Navbar />
-                <section className="flex justify-center mt-[100px]">
-                    <article className='prose dark:prose-invert w-[80%]' dangerouslySetInnerHTML={{ __html: content }}>
+                <section className="mt-[100px] max-w-[65ch] sm:mx-auto m-3">
+                    <BreadCrumbs/>
+                    <article className='prose dark:prose-invert relative' dangerouslySetInnerHTML={{ __html: content }}>
                     </article>
                 </section>
             </main>

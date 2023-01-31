@@ -2,6 +2,9 @@
 title: Sample Section
 ---
 
+# toc
+1. Sample Section
+2. An h2 header
 
 # Sample Section
 
@@ -66,3 +69,5 @@ $$\frac{x + 1}{x + 2} = 2$$
 
     for i in range(10):
         print(i)
+
+[go up to header](#samplesection)

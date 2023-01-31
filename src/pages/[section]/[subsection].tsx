@@ -3,6 +3,7 @@ import React from "react";
 import Footer from "@/components/Footer";
 import Head from "next/head";
 import { getSections, getSubsectionPost, getSubSections } from "lib/sections";
+import { BreadCrumbs } from "@/components/BreadCrumbs";
 
 export async function getStaticPaths() {
     const sections = await getSections()
@@ -40,7 +41,8 @@ const Subsection = ({ title, content }: any) => {
             </Head>
             <main>
                 <Navbar />
-                <section className="flex justify-center mt-[100px]">
+                <section className="mt-[100px] max-w-[65ch] m-auto">
+                    <BreadCrumbs />
                     <article className='prose dark:prose-invert w-[80%]' dangerouslySetInnerHTML={{ __html: content }}>
                     </article>
                 </section>
