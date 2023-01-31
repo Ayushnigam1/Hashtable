@@ -1,5 +1,5 @@
 ---
-title: 'Question 2'
+title: 'Traversing a Graph'
 date: '2020-01-01'
 ---
 

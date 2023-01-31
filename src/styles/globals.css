@@ -3,10 +3,14 @@
 @tailwind utilities;
 
 body {
-    margin: auto;
+    @apply m-auto
 }
 
 /* for removing background from highlight js */
 .hljs {
     background-color: transparent !important;
+}
+
+#toc, #toc + ol {
+    @apply font-normal text-sm fixed right-0
 }

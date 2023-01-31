@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, } from "react";
 import { FiCode, FiSearch, FiX } from "react-icons/fi/";
 import Router from "next/router";
-
+import Tag from './Tag';
 const Search = (_props: any) => {
     // user input string
     const [searchTerm, setSearchTerm] = useState("");
@@ -53,13 +53,26 @@ const Search = (_props: any) => {
 
     const handleclick=()=>{
        
-        Router.push(`/search?keyword=${searchTerm}`);
+        Router.push(`/search?keyword=${searchTerm.toLowerCase()}`);
     }
+
+    // build tag sections
+    const [tags, setTags] = useState<string[]>([]);
+
+    const handleAdd = (tag: string) => {
+        setTags([...tags, tag]);
+    };
+
+    const handleRemove = (tag: string) => {
+        setTags(tags.filter((t) => t !== tag));
+        Router.back();
+    };
+
     return (
         <>
           
             <div
-                className="relative flex justify-center items-center rounded-full min-h-[40px] max-w-[600px] w-[100%] bg-white dark:text-gray-800"
+                className="relative flex justify-center items-center rounded-full min-h-[40px] max-w-[600px] w-[100%] bg-gray-300 dark:text-gray-800"
                 ref={comboBoxRef}
             >
              
@@ -67,11 +80,19 @@ const Search = (_props: any) => {
                     <FiSearch size={18} />
                 </button>
                 <input
-                    className="flex-grow min-h-full outline-none z-20 bg-transparent"
+                    className="flex-grow min-h-full outline-none z-20  dark:bg-transparent"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onFocus={(_) => setFocus(true)}
-                   
+                    onKeyDown={(event:any) => {
+                        if (event.key === 'Enter') {
+                            
+                          handleAdd(event.target.value);
+                          Router.push(`/search?keyword=${searchTerm.toLowerCase()}`);
+                          event.target.value = '';
+                        }
+                          }
+                        }
                 />
                 <button
                     className="p-3 hover:bg-gray-100 rounded-full z-20"
@@ -96,9 +117,14 @@ const Search = (_props: any) => {
                         );
                     })}
                 </div>
-              
-            </div>
-            
+              </div>
+             
+            <div className="flex">
+                {tags.map((tag) => (
+          <Tag key={tag} tag={tag} onRemove={handleRemove} />
+        ))}
+        </div>
+        
         </>
     );
 };

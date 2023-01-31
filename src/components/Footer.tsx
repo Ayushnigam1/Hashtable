@@ -11,7 +11,7 @@ import {
 const Footer = () => {
     return (
         <>
-            <footer className="w-screen bottom-0 mt-5 text-center sm:text-left lg:text-left text-gray-700 dark:text-gray-50">
+            <footer className="relative w-full h-screen bottom-0 mt-5 text-center sm:text-left lg:text-left text-gray-700 dark:text-gray-50">
                 <div className="flex justify-center items-center sm:justify-between lg:justify-between p-6 border-b border-gray-700 dark:border-white">
                     <div className="mr-12  sm: block lg:block">
                         <span className=" text-sm sm:text-lg text-gray-700 font-bold dark:text-gray-50">Hashtable</span>

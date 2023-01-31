@@ -1,7 +1,7 @@
 import fs, { readdirSync } from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
-import { remark } from 'remark'
+import showdown from 'showdown'
 
 import html from 'remark-html'
 
@@ -35,9 +35,9 @@ export async function getSectionIndex(section: string): Promise<Section> {
     const fileContents = fs.readFileSync(sectionIndex, 'utf8')
     const matterResult = matter(fileContents)
 
-    const processedContent = await remark()
-        .use(html)
-        .process(matterResult.content)
+    var mdconverter = new showdown.Converter()
+
+    const processedContent = mdconverter.makeHtml(matterResult.content)
 
     const content = processedContent.toString()
 
@@ -52,9 +52,9 @@ export async function getSubsectionPost(section: string, subsection: string) {
     const subSectionContent = fs.readFileSync(subSectionPath, 'utf8')
     const matterResult = matter(subSectionContent)
 
-    const processedContent = await remark()
-        .use(html)
-        .process(matterResult.content)
+    var mdconverter = new showdown.Converter()
+
+    const processedContent = mdconverter.makeHtml(matterResult.content)
 
     const content = processedContent.toString()
 

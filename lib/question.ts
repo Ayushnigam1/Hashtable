@@ -3,9 +3,11 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from "remark-html"
+import showdown from 'showdown'
 
 const questionDirectory = path.join(process.cwd(), 'questions')
 
+// Returns question with id and frontmatter
 export function getQuestions() {
     const fileNames = fs.readdirSync(questionDirectory)
     const allQuestions = fileNames.map((fileName) => {
@@ -24,14 +26,15 @@ export function getQuestions() {
     return allQuestions
 }
 
+// Returns question with id and content
 export async function getQuestionById(question: string) {
     const filePath = path.join(questionDirectory, `${question}.md`)
     const fileContents = fs.readFileSync(filePath, 'utf8')
     const matterResult = matter(fileContents)
 
-    const processedContent = await remark()
-        .use(html)
-        .process(matterResult.content)
+    var mdconverter = new showdown.Converter()
+
+    const processedContent = mdconverter.makeHtml(matterResult.content)
 
     const content = processedContent.toString()
 
