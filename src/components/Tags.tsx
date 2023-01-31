@@ -19,6 +19,7 @@ export const Tags = () => {
         ))}
    <input className='rounded m-2 pl-2 ' type="text" placeholder='Search here...' onKeyDown={(event) => {
         if (event.key === 'Enter') {
+            console.log(event.target);
           handleAdd(event.target.value);
           event.target.value = '';
         }
