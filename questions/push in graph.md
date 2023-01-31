@@ -1,5 +1,5 @@
 ---
-title: "Add two linked List"
+title: "push in Graph"
 date: "2020-01-01"
 tags: ["dp", "two pointers"]
 ---
