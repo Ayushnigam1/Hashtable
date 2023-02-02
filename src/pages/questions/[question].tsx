@@ -1,15 +1,16 @@
 import Navbar from "@/components/Navbar";
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import Footer from "@/components/Footer";
 import { getQuestionById, getQuestions } from "lib/question";
 import Head from "next/head";
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github-dark.css'
+import { TocLink } from "@/components/Toc";
 
 export async function getStaticPaths() {
-    const questions = getQuestions();
-    const paths = questions.map(post => ({
-        params: { question: post.id }
+    const questions = await getQuestions();
+    const paths = questions.map(question => ({
+        params: { question: question.id }
     }))
     return { paths, fallback: false }
 }
@@ -22,7 +23,7 @@ export async function getStaticProps({ params }: any) {
         },
     };
 }
-const Question = ({ title, date, content }: any) => {
+const Question = ({ title, date, content, toc }: any) => {
     useEffect(() => {
         hljs.highlightAll()
     }, [])
@@ -35,11 +36,20 @@ const Question = ({ title, date, content }: any) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-               
-                <Navbar />
-                <section className="flex justify-center mt-[100px]">
-                    <article className="prose dark:prose-invert w-[80%]" dangerouslySetInnerHTML={{ __html: content }}>
-                    </article>
+
+                <Navbar mode="sticky"/>
+                <section className="flex justify-center gap-2">
+                    <div>
+                        <div className="text-gray-400 text-sm py-2">
+                            {`Last updated on ${date}`}
+                        </div>
+                        <article className="prose dark:prose-invert w-[80%]" dangerouslySetInnerHTML={{ __html: content }}>
+                        </article>
+                    </div>
+                    <nav className="sticky h-[539px]">
+                        {toc != undefined ? <label className="font-bold" htmlFor="toc">Table of content</label>: ''}
+                        <TocLink dic={toc} />
+                    </nav>
                 </section>
                 <Footer />
             </main>

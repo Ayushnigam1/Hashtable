@@ -1,19 +1,19 @@
 ---
-title: 'Traversing a Graph'
-date: '2020-01-01'
+title: "Longest Subsequence"
+date: "2020-01-01"
+tags: ["dynamic programming", "basic", "subsequence"]
 ---
 
-Question 2 - Traversing a Graph
-============
+# Question 1 - Add two linked List
 
-Paragraphs are separated by a blank line.
+Paragraphs are separated by a blank line.<mark>very important words</mark>.
 
-2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists
-look like:
+2nd paragraph. _Italic_, **bold**, and `monospace`.
+Itemized lists look like:
 
-  * this one
-  * that one
-  * the other one
+- this one
+- that one
+- the other one
 
 Note that --- not considering the asterisk --- the actual text
 content starts at 4-columns in.
@@ -28,16 +28,13 @@ Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., "it's all
 in chapters 12--14"). Three dots ... will be converted to an ellipsis.
 Unicode is supported. ☺
 
-
-
-An h2 header
-------------
+## An h2 header
 
 Here's a numbered list:
 
- 1. first item
- 2. second item
- 3. third item
+1.  first item
+2.  second item
+3.  third item
 
 Note again how the actual text starts at 4 columns in (4 characters
 from the left side). Here's a code sample:
@@ -48,39 +45,41 @@ from the left side). Here's a code sample:
 As you probably guessed, indented 4 spaces. By the way, instead of
 indenting the block, you can use delimited blocks, if you like:
 
-~~~
+```
 define foobar() {
     print "Welcome to flavor country!";
 }
-~~~
+```
 
 (which makes copying & pasting easier). You can optionally mark the
 delimited block for Pandoc to syntax highlight it:
 
-~~~python
+```python
 import time
 # Quick, count to ten!
 for i in range(10):
     # (but not *too* quick)
     time.sleep(0.5)
     print i
-~~~
+```
 
+### Add latex
 
+This is an inline equation: $$x = y^2$$
 
-### An h3 header ###
+### An h3 header
 
 Now a nested list:
 
- 1. First, get these ingredients:
+1.  First, get these ingredients:
 
-      * carrots
-      * celery
-      * lentils
+    - carrots
+    - celery
+    - lentils
 
- 2. Boil some water.
+2.  Boil some water.
 
- 3. Dump everything in the pot and follow
+3.  Dump everything in the pot and follow
     this algorithm:
 
         find wooden spoon
@@ -103,42 +102,44 @@ doc](#an-h2-header). Here's a footnote [^1].
 [^1]: Footnote text goes here.
 
 Tables can look like this:
-
-size  material      color
-----  ------------  ------------
-9     leather       brown
-10    hemp canvas   natural
-11    glass         transparent
+| Syntax | Description |
+| ----------- | ----------- |
+| Header | Title |
+| Paragraph | Text |
 
 Table: Shoes, their sizes, and what they're made of
 
 (The above is the caption for the table.) Pandoc also supports
 multi-line tables:
 
---------  -----------------------
-keyword   text
---------  -----------------------
-red       Sunsets, apples, and
-          other red or reddish
-          things.
+---
 
-green     Leaves, grass, frogs
-          and other things it's
-          not easy being.
---------  -----------------------
+keyword text
+
+---
+
+red Sunsets, apples, and
+other red or reddish
+things.
+
+green Leaves, grass, frogs
+and other things it's
+not easy being.
+
+---
 
 A horizontal rule follows.
 
-***
+---
 
 Here's a definition list:
 
 apples
-  : Good for making applesauce.
+: Good for making applesauce.
 oranges
-  : Citrus!
+: Citrus!
 tomatoes
-  : There's no "e" in tomatoe.
+: There's no "e" in tomatoe.
 
 Again, text is indented 4 spaces. (Put a blank line between each
 term/definition pair to spread things out more.)
@@ -146,7 +147,7 @@ term/definition pair to spread things out more.)
 Here's a "line block":
 
 | Line one
-|   Line too
+| Line too
 | Line tree
 
 and images can be specified like so:

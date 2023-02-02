@@ -1,7 +1,7 @@
 ---
-title: "Add two linked List"
+title: "Push in graph"
 date: "2020-01-01"
-tags: ["dp", "two pointers"]
+tags: ["graph", "bfs", "dfs"]
 ---
 
 # Question 1 - Add two linked List

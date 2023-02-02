@@ -10,7 +10,3 @@ body {
 .hljs {
     background-color: transparent !important;
 }
-
-#toc, #toc + ol {
-    @apply font-normal text-sm fixed right-0
-}

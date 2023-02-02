@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { TailSwitch } from './Switch'
 
-const Navbar = () => {
+const Navbar = (props: { mode?: string }) => {
 
     const [onTop, setTop] = useState(true);
 
@@ -26,7 +26,7 @@ const Navbar = () => {
 
     return (
         <>
-            <header className={`fixed min-w-full ${onTop? "dark:text-gray-300": "bg-sky-500 text-white"} z-50 transition-colors top-0`}>
+            <header className={`${props.mode != undefined ? props.mode : 'fixed'} min-w-full ${onTop ? "dark:text-gray-300" : "bg-sky-500 text-white"} z-50 transition-colors top-0`}>
                 <nav className='min-h-[64px] flex justify-between items-center ml-10 mr-10 '>
                     <span className="text-xl">
                         Hashtable

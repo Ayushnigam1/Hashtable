@@ -2,10 +2,9 @@ import React, { useEffect, useRef, useState, } from "react";
 import { FiCode, FiSearch, FiX } from "react-icons/fi/";
 import Router from "next/router";
 import Tag from './Tag';
-const Search = (_props: any) => {
+const Search = (props: { items?: { label: string }[], tags?: string[], input?: string }) => {
     // user input string
-    const [searchTerm, setSearchTerm] = useState("");
-    const [val,setval]=useState("");
+    const [searchTerm, setSearchTerm] = useState(props.input != undefined ? props.input: "");
 
     // If the search box is in focus
     const [isFocused, setFocus] = useState(false);
@@ -14,16 +13,13 @@ const Search = (_props: any) => {
     const comboBoxRef = useRef<HTMLDivElement>(null);
 
     // List of items to be brought from backendl
-    const [items, setItems] = useState([
-        { label: "dynamic_programming" },
-        { label: "Graph" },
-        { label: "Trees" },
-        { label: "Traversal in Graph" },
-        { label: "Traverse in Tree" },
-    ]);
+    const [items, setItems] = useState(props.items != undefined ? props.items!: []);
 
     // filtered item list based on [searchTerm]
     const [filterItems, setFilterItems] = useState<any>([]);
+
+    // build tag sections
+    const [tags, setTags] = useState<string[]>(props.tags != undefined ? props.tags!: []);
 
     // For events related to the search box
     useEffect(() => {
@@ -40,7 +36,7 @@ const Search = (_props: any) => {
         return () => {
             document.removeEventListener("mousedown", focusLost);
         };
-    }, []);
+    }, [items]);
 
     useEffect(() => {
         setFilterItems(
@@ -51,13 +47,9 @@ const Search = (_props: any) => {
         );
     }, [searchTerm, items, isFocused]);
 
-    const handleclick=()=>{
-       
+    const handleclick = () => {
         Router.push(`/search?keyword=${searchTerm.toLowerCase()}`);
     }
-
-    // build tag sections
-    const [tags, setTags] = useState<string[]>([]);
 
     const handleAdd = (tag: string) => {
         setTags([...tags, tag]);
@@ -70,12 +62,12 @@ const Search = (_props: any) => {
 
     return (
         <>
-          
+
             <div
                 className="relative flex justify-center items-center rounded-full min-h-[40px] max-w-[600px] w-[100%] bg-gray-300 dark:text-gray-800"
                 ref={comboBoxRef}
             >
-             
+
                 <button className="p-3 hover:bg-gray-100 rounded-full relative z-20" onClick={handleclick}>
                     <FiSearch size={18} />
                 </button>
@@ -84,15 +76,15 @@ const Search = (_props: any) => {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onFocus={(_) => setFocus(true)}
-                    onKeyDown={(event:any) => {
+                    onKeyDown={(event: any) => {
                         if (event.key === 'Enter') {
-                            
-                          handleAdd(event.target.value);
-                          Router.push(`/search?keyword=${searchTerm.toLowerCase()}`);
-                          event.target.value = '';
+
+                            handleAdd(event.target.value);
+                            Router.push(`/search?keyword=${searchTerm.toLowerCase()}`);
+                            event.target.value = '';
                         }
-                          }
-                        }
+                    }
+                    }
                 />
                 <button
                     className="p-3 hover:bg-gray-100 rounded-full z-20"
@@ -117,14 +109,14 @@ const Search = (_props: any) => {
                         );
                     })}
                 </div>
-              </div>
-             
+            </div>
+
             <div className="flex">
                 {tags.map((tag) => (
-          <Tag key={tag} tag={tag} onRemove={handleRemove} />
-        ))}
-        </div>
-        
+                    <Tag key={tag} tag={tag} onRemove={handleRemove} />
+                ))}
+            </div>
+
         </>
     );
 };

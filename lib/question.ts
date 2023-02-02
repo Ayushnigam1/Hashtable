@@ -1,14 +1,12 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { remark } from 'remark'
-import html from "remark-html"
 import showdown from 'showdown'
 
 const questionDirectory = path.join(process.cwd(), 'questions')
 
 // Returns question with id and frontmatter
-export function getQuestions() {
+export async function getQuestions() {
     const fileNames = fs.readdirSync(questionDirectory)
     const allQuestions = fileNames.map((fileName) => {
         const id = fileName.replace(/\.md$/, '');

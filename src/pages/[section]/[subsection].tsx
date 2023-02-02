@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Head from "next/head";
 import { getSections, getSubsectionPost, getSubSections } from "lib/sections";
 import { BreadCrumbs } from "@/components/BreadCrumbs";
+import { TocLink } from "@/components/Toc";
 
 export async function getStaticPaths() {
     const sections = await getSections()
@@ -30,7 +31,7 @@ export async function getStaticProps({ params }: any) {
     }
 }
 
-const Subsection = ({ title, content }: any) => {
+const Subsection = ({ title, content, toc }: any) => {
     return (
         <>
             <Head>
@@ -41,10 +42,16 @@ const Subsection = ({ title, content }: any) => {
             </Head>
             <main>
                 <Navbar />
-                <section className="mt-[100px] max-w-[65ch] m-auto">
+                <section className="mt-[100px] m-auto flex justify-center">
+                    <div>
                     <BreadCrumbs />
-                    <article className='prose dark:prose-invert w-[80%]' dangerouslySetInnerHTML={{ __html: content }}>
+                    <article className='prose dark:prose-invert max-w-[65ch]' dangerouslySetInnerHTML={{ __html: content }}>
                     </article>
+                    </div>
+                    <nav>
+                        {toc != undefined ? <label className="font-bold" htmlFor="toc">Table of content</label>: ''}
+                        <TocLink dic={toc}/>
+                    </nav>
                 </section>
             </main>
             <Footer />

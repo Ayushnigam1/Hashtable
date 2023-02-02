@@ -6,6 +6,7 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/github-dark.css'
 import { getSectionIndex, getSections } from 'lib/sections'
 import { BreadCrumbs } from '@/components/BreadCrumbs'
+import { TocLink } from '@/components/Toc'
 
 export async function getStaticPaths() {
     const sections = await getSections();
@@ -22,7 +23,7 @@ export async function getStaticProps({ params }: any) {
     }
 }
 
-const Section = ({ title, content }: any) => {
+const Section = ({ title, content, toc}: any) => {
     useEffect(() => {
         hljs.highlightAll()
     }, [])
@@ -36,10 +37,16 @@ const Section = ({ title, content }: any) => {
             </Head>
             <main>
                 <Navbar />
-                <section className="mt-[100px] max-w-[65ch] sm:mx-auto m-3">
+                <section className="mt-[100px] sm:mx-auto m-3 flex justify-center">
+                    <div>
                     <BreadCrumbs/>
-                    <article className='prose dark:prose-invert relative' dangerouslySetInnerHTML={{ __html: content }}>
+                    <article className='prose dark:prose-invert max-w-[65ch]' dangerouslySetInnerHTML={{ __html: content }}>
                     </article>
+                    </div>
+                    <nav>
+                        {toc != undefined ? <label className="font-bold" htmlFor="toc">Table of content</label>: ''}
+                        <TocLink dic={toc}/>
+                    </nav>
                 </section>
             </main>
             <Footer />

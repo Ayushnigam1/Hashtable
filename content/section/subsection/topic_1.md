@@ -1,5 +1,9 @@
 ---
 title: Topic 1
+toc:
+    latex:
+    features:
+    hello-world:
 ---
 
 Topic 1

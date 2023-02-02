@@ -1,10 +1,9 @@
 ---
 title: Sample Section
+toc: 
+    sample-section:
+    an-h2-header:
 ---
-
-# toc
-1. Sample Section
-2. An h2 header
 
 # Sample Section
 

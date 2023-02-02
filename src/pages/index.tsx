@@ -5,7 +5,6 @@ import { Hero } from "@/components/Hero";
 import Search from "@/components/Search";
 import Footer from "@/components/Footer";
 import { getSectionIndex, getSections, Section } from "lib/sections";
-import { Tags } from "@/components/Tags";
 
 export async function getStaticProps() {
     const sections = await getSections();
