@@ -18,7 +18,7 @@ export const BreadCrumbs = () => {
     }, [router])
 
     return (
-        <div className='flex space-x-2 text-sm py-3'>
+        <div className='flex space-x-2 text-sm m-4 w-full sticky'>
             {breadCrumb?.map((crumb, index) =>
                 <React.Fragment key={index}>
                     {index > 0 ? <span className="text-slate-500 dark:text-gray-400">{'/'}</span> : ''}

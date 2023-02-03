@@ -5,6 +5,7 @@ import { getQuestions, Question } from "lib/question";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
 import Search from "@/components/Search";
+import Footer from "@/components/Footer";
 
 
 export async function getStaticProps() {
@@ -33,20 +34,20 @@ const Searchpage = ({ section, question, }: { section: Section[]; question: Ques
     return (
         <>
             <Navbar />
-            <div className="xl:max-w-[120ch] h-[200px] mx-4 mt-4 xl:mx-auto flex items-center">
+            <div className="xl:max-w-[120ch] h-[200px] mx-4 mt-4 xl:mx-auto flex items-center justify-center">
                 <Search input={searchdata} />
             </div>
-            <section className="xl:max-w-[120ch] mx-4 mt-4 xl:mx-auto flex gap-4">
+            <section className="xl:max-w-[120ch] mx-4 mt-4 xl:mx-auto flex flex-col md:flex-row gap-4">
                 <div className="flex-grow">
                     <h3 className="font-bold text-2xl mb-4">Problems</h3>
-                    <table className="table-auto w-full">
+                    <table className="table-auto w-full ">
                         <thead>
                             <tr>
                                 {
                                     ["#", "Name", "Difficulty"].map((heading, index) =>
                                         <th
                                             key={index}
-                                            className="border-b border-slate-100 font-bold dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-200 text-left"
+                                            className="border-b border-gray-300 font-bold dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-200 text-left"
                                         >
                                             {heading}
                                         </th>)
@@ -61,21 +62,21 @@ const Searchpage = ({ section, question, }: { section: Section[]; question: Ques
                                         .filter((question: Question) => question.id.includes(searchdata))
                                         .map((question: any, index: number) => {
 
-                                            return <tr key={index}>
+                                            return <tr key={index} className="  transition ease-in-out hover:scale-105 hover:bg-slate-200 dark:hover:bg-gray-700">
                                                 <td
-                                                    className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"
+                                                    className="border-b border-gray-300 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"
                                                 >
                                                     {index + 1}
                                                 </td>
                                                 <td
-                                                    className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400 capitalize"
+                                                    className="border-b border-gray-300 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400 capitalize"
                                                 >
                                                     <a href={`./questions/${question}`}>
                                                         {question.id.replace(/_/g, ' ')}
                                                     </a>
                                                 </td>
                                                 <td
-                                                    className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"
+                                                    className="border-b  border-gray-300 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"
                                                 >
                                                     {question.difficulty}
                                                 </td>
@@ -90,7 +91,7 @@ const Searchpage = ({ section, question, }: { section: Section[]; question: Ques
                     <h3 className="font-bold text-2xl mb-4">Topics</h3>
                     {section.filter((item) => item.section.includes(searchdata)).length >
                         0 ? (
-                        <div className="flex flex-col max-w-xs gap-4">
+                        <div className="flex flex-col justify-center max-w-xs gap-4">
                             {section
                                 .filter((item) => item.section.includes(searchdata.toLowerCase()))
                                 .map((section: Section, idx: number) => {
@@ -106,6 +107,7 @@ const Searchpage = ({ section, question, }: { section: Section[]; question: Ques
                     )}
                 </div>
             </section>
+            {/* <Footer/> */}
         </>
     );
 };

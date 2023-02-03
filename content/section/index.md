@@ -5,7 +5,7 @@ toc:
     an-h2-header:
 ---
 
-# Sample Section
+## Sample Section
 
 Paragraphs are separated by a blank line.
 

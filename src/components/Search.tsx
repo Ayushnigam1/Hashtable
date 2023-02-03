@@ -62,19 +62,20 @@ const Search = (props: { items?: { label: string }[], tags?: string[], input?: s
     };
 
     return (
-        <div className="max-w-[600px] w-full">
+        <div className="max-w-[600px] w-full ">
 
             <div
-                className="relative flex justify-center items-center rounded-full min-h-[40px] w-[100%] bg-gray-300 dark:text-gray-800"
+                className="relative flex justify-center items-center rounded-full min-h-[40px] w-[100%] bg-gray-400 dark:text-gray-800"
                 ref={comboBoxRef}
             >
 
-                <button className="p-3 hover:bg-gray-100 rounded-full relative z-20" onClick={handleclick}>
+                <button className="p-3 hover:bg-gray-500 rounded-full bg-gray-400 relative z-20" onClick={handleclick}>
                     <FiSearch size={18} />
                 </button>
                 <input
-                    className="flex-grow min-h-full outline-none z-20  dark:bg-transparent"
+                    className="flex-grow min-h-full font-semibold outline-none z-20 bg-gray-400 dark:bg-gray-400"
                     value={searchTerm}
+                   
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onFocus={(_) => setFocus(true)}
                     onKeyDown={(event: any) => {
@@ -88,12 +89,12 @@ const Search = (props: { items?: { label: string }[], tags?: string[], input?: s
                     }
                 />
                 <button
-                    className="p-3 hover:bg-gray-100 rounded-full z-20"
+                    className="p-3 hover:bg-gray-500 rounded-full z-20"
                     onClick={(_) => setSearchTerm("")}
                 >
                     <FiX className="" size={18} />
                 </button>
-                <div
+                {/* <div
                     className={`absolute w-full z-10 top-0 border-1 min-h-[100%] rounded-[20px] bg-white ${isFocused ? "drop-shadow-md" : ""}`}
                 >
                     <span className="min-h-[40px] w-full block"></span>
@@ -109,10 +110,10 @@ const Search = (props: { items?: { label: string }[], tags?: string[], input?: s
                             </button>
                         );
                     })}
-                </div>
+                </div> */}
             </div>
 
-            <div className="flex mt-4 gap-3 min-w-min">
+            <div className="flex mt-4 gap-3 max-w-[500px]">
                 {
                     tags.map((tag) => (
                         <Tag key={tag} tag={tag} onRemove={handleRemove} />

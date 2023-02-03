@@ -35,16 +35,17 @@ const Section = ({ title, content, toc}: any) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main>
-                <Navbar />
-                <section className="mt-[100px] sm:mx-auto m-3 flex justify-center">
-                    <div>
+            <main> 
+                <Navbar />  
+            <section className="mt-28 flex justify-center max-w-screen">
+               
+                   <div className='w-[320px] sm:w-auto'>
                     <BreadCrumbs/>
-                    <article className='prose dark:prose-invert max-w-[65ch]' dangerouslySetInnerHTML={{ __html: content }}>
+                    <article className='prose inline-block lg:prose-xl dark:prose-invert text-justify mx-5 ' dangerouslySetInnerHTML={{ __html: content }}>
                     </article>
                     </div>
-                    <nav>
-                        {toc != undefined ? <label className="font-bold" htmlFor="toc">Table of content</label>: ''}
+                    <nav className='hidden md:flex'>
+                        {toc != undefined ? <label className="font-bold fixed top-20" htmlFor="toc">Table of content</label>: ''}
                         <TocLink dic={toc}/>
                     </nav>
                 </section>
