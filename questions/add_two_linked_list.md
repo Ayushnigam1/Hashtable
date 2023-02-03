@@ -2,6 +2,7 @@
 title: "Add two linked List"
 date: "2020-01-01"
 tags: ["C++", "linked list", "data structure", "merge"]
+difficulty: "Hard"
 toc:
     add-two-linked-list:
         subheading-1:

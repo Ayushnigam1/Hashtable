@@ -1,15 +1,14 @@
 import Cards from "@/components/Cards";
 import React from "react";
 import { getSectionIndex, getSections, Section } from "lib/sections";
-import { getQuestions } from "lib/question";
+import { getQuestions, Question } from "lib/question";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
-import Router from "next/router";
 import Search from "@/components/Search";
 
 
 export async function getStaticProps() {
-    const questions = await getQuestions();
+    const question: Question[] = await getQuestions();
     const sections = await getSections();
 
     const section: Section[] = await Promise.all(
@@ -19,8 +18,6 @@ export async function getStaticProps() {
         })
     );
 
-    const question = questions.map((question) => question.id);
-
     return {
         props: {
             section,
@@ -29,7 +26,7 @@ export async function getStaticProps() {
     };
 }
 
-const Searchpage = ({ section, question, }: { section: Section[]; question: string[] }) => {
+const Searchpage = ({ section, question, }: { section: Section[]; question: Question[] }) => {
     const router = useRouter();
     const searchdata = router.query.keyword as string;
 
@@ -37,41 +34,75 @@ const Searchpage = ({ section, question, }: { section: Section[]; question: stri
         <>
             <Navbar />
             <div className="xl:max-w-[120ch] h-[200px] mx-4 mt-4 xl:mx-auto flex items-center">
-                <Search input={searchdata}/>
+                <Search input={searchdata} />
             </div>
+            <section className="xl:max-w-[120ch] mx-4 mt-4 xl:mx-auto flex gap-4">
+                <div className="flex-grow">
+                    <h3 className="font-bold text-2xl mb-4">Problems</h3>
+                    <table className="table-auto w-full">
+                        <thead>
+                            <tr>
+                                {
+                                    ["#", "Name", "Difficulty"].map((heading, index) =>
+                                        <th
+                                            key={index}
+                                            className="border-b border-slate-100 font-bold dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-200 text-left"
+                                        >
+                                            {heading}
+                                        </th>)
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {question.filter((question: Question) => question.id.includes(searchdata)).length >
+                                0 ? (
+                                <>
+                                    {question
+                                        .filter((question: Question) => question.id.includes(searchdata))
+                                        .map((question: any, index: number) => {
 
-            <section className="xl:max-w-[120ch] mx-4 mt-4 xl:mx-auto">
-                <div className="mb-5">
-                    <h3 className="font-bold text-2xl m-2">Section</h3>
+                                            return <tr key={index}>
+                                                <td
+                                                    className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"
+                                                >
+                                                    {index + 1}
+                                                </td>
+                                                <td
+                                                    className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400 capitalize"
+                                                >
+                                                    <a href={`./questions/${question}`}>
+                                                        {question.id.replace(/_/g, ' ')}
+                                                    </a>
+                                                </td>
+                                                <td
+                                                    className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"
+                                                >
+                                                    {question.difficulty}
+                                                </td>
+                                            </tr>
+                                        })}
+                                </>
+                            ) : <></>}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3 className="font-bold text-2xl mb-4">Topics</h3>
                     {section.filter((item) => item.section.includes(searchdata)).length >
                         0 ? (
-                        <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 gap-4">
+                        <div className="flex flex-col max-w-xs gap-4">
                             {section
                                 .filter((item) => item.section.includes(searchdata.toLowerCase()))
                                 .map((section: Section, idx: number) => {
-                                    return <Cards data={section} key={idx} />;
+                                    return <Cards
+                                        className="rounded-lg shadow-lg bg-transparent max-h-fit opacity-80 hover:bg-gray-300 hover:shadow-2xl hover:opacity-100 relative"
+                                        key={idx}
+                                        title={section.title}
+                                    />;
                                 })}
                         </div>
                     ) : (
-                        <h1 className="font-bold flex text-2xl m-2 justify-center">Oops! data does not exist......</h1>
-                    )}
-                </div>
-                <div>
-                    <h3 className="font-bold text-2xl m-2">Question</h3>
-                    {question.filter((item: string) => item.includes(searchdata)).length >
-                        0 ? (
-                        <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 gap-4">
-                            {question
-                                .filter((item) => item.includes(searchdata))
-                                .map((question: string, index: number) => {
-
-                                    return <>
-                                        <div className="p-3 text-lg font-semibold bg-gray-400 dark:bg-black rounded cursor-pointer" key={index} onClick={() => { Router.push(`questions/${question}`) }}>{question.charAt(0).toUpperCase() + question.slice(1)}</div>
-                                    </>
-                                })}
-                        </div>
-                    ) : (
-                        <h1 className="font-bold flex text-2xl m-2 justify-center">Oops! data does not exist......</h1>
+                        <h1 className="font-normal flex text-lg m-2 justify-center">Oops! data does not exist......</h1>
                     )}
                 </div>
             </section>

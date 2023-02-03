@@ -2,6 +2,7 @@
 title: "Longest Subsequence"
 date: "2020-01-01"
 tags: ["dynamic programming", "basic", "subsequence"]
+difficulty: "Medium"
 ---
 
 # Question 1 - Add two linked List

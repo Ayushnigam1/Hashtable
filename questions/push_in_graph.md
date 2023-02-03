@@ -2,6 +2,7 @@
 title: "Push in graph"
 date: "2020-01-01"
 tags: ["graph", "bfs", "dfs"]
+difficulty: "Medium"
 ---
 
 # Question 1 - Add two linked List

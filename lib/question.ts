@@ -5,8 +5,12 @@ import showdown from 'showdown'
 
 const questionDirectory = path.join(process.cwd(), 'questions')
 
+export interface Question {
+    id: string,
+    [key: string]: any
+}
 // Returns question with id and frontmatter
-export async function getQuestions() {
+export async function getQuestions(): Promise<Question[]> {
     const fileNames = fs.readdirSync(questionDirectory)
     const allQuestions = fileNames.map((fileName) => {
         const id = fileName.replace(/\.md$/, '');

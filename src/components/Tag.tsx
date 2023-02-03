@@ -1,5 +1,5 @@
 import React from 'react'
-import { CiSquareRemove } from 'react-icons/ci'
+import {FiX} from 'react-icons/fi'
 
 interface Props {
     tag: string;
@@ -10,11 +10,9 @@ const Tag = ({ tag, onRemove }: any) => {
     return (
         <>
 
-            <div className='flex flex-row bg-gray-600 rounded text-sm items-center pl-3 pr-3 m-2'>
-
+            <div className='flex bg-gray-600 rounded-full text-sm items-center px-3 py-2'>
                 <div className='items-center text-white'>{tag}</div>
-                <button className='items-center ml-1 text-white' onClick={() => onRemove(tag)}><CiSquareRemove /> </button>
-
+                <button className='items-center ml-1 text-white' onClick={() => onRemove(tag)}><FiX size={16} /> </button>
             </div>
 
         </>

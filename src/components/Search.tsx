@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState, } from "react";
 import { FiCode, FiSearch, FiX } from "react-icons/fi/";
 import Router from "next/router";
 import Tag from './Tag';
+
 const Search = (props: { items?: { label: string }[], tags?: string[], input?: string }) => {
     // user input string
-    const [searchTerm, setSearchTerm] = useState(props.input != undefined ? props.input: "");
+    const [searchTerm, setSearchTerm] = useState(props.input != undefined ? props.input : "");
 
     // If the search box is in focus
     const [isFocused, setFocus] = useState(false);
@@ -13,13 +14,13 @@ const Search = (props: { items?: { label: string }[], tags?: string[], input?: s
     const comboBoxRef = useRef<HTMLDivElement>(null);
 
     // List of items to be brought from backendl
-    const [items, setItems] = useState(props.items != undefined ? props.items!: []);
+    const [items, setItems] = useState(props.items != undefined ? props.items! : []);
 
     // filtered item list based on [searchTerm]
     const [filterItems, setFilterItems] = useState<any>([]);
 
     // build tag sections
-    const [tags, setTags] = useState<string[]>(props.tags != undefined ? props.tags!: []);
+    const [tags, setTags] = useState<string[]>(props.tags != undefined ? props.tags! : []);
 
     // For events related to the search box
     useEffect(() => {
@@ -61,10 +62,10 @@ const Search = (props: { items?: { label: string }[], tags?: string[], input?: s
     };
 
     return (
-        <>
+        <div className="max-w-[600px] w-full">
 
             <div
-                className="relative flex justify-center items-center rounded-full min-h-[40px] max-w-[600px] w-[100%] bg-gray-300 dark:text-gray-800"
+                className="relative flex justify-center items-center rounded-full min-h-[40px] w-[100%] bg-gray-300 dark:text-gray-800"
                 ref={comboBoxRef}
             >
 
@@ -111,13 +112,15 @@ const Search = (props: { items?: { label: string }[], tags?: string[], input?: s
                 </div>
             </div>
 
-            <div className="flex">
-                {tags.map((tag) => (
-                    <Tag key={tag} tag={tag} onRemove={handleRemove} />
-                ))}
+            <div className="flex mt-4 gap-3 min-w-min">
+                {
+                    tags.map((tag) => (
+                        <Tag key={tag} tag={tag} onRemove={handleRemove} />
+                    ))
+                }
             </div>
 
-        </>
+        </div>
     );
 };
 

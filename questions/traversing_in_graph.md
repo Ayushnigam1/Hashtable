@@ -2,6 +2,7 @@
 title: "Traversing a Graph"
 date: '2020-01-01'
 tags: ["bfs", "dfs", "graph", "data structure", "traversal"]
+difficulty: "Easy"
 ---
 
 Question 2 - Traversing a Graph
