@@ -3,9 +3,6 @@ import matter from 'gray-matter'
 import path from 'path'
 import showdown from 'showdown'
 
-import html from 'remark-html'
-
-
 const sectionDirectory = path.join(process.cwd(), 'content')
 
 export async function getSections() {

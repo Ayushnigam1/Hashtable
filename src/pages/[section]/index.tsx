@@ -4,7 +4,7 @@ import Footer from '@/components/Footer'
 import Head from 'next/head'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github-dark.css'
-import { getSectionIndex, getSections } from 'lib/sections'
+import { getSectionIndex, getSections, getSubSections } from 'lib/sections'
 import { BreadCrumbs } from '@/components/BreadCrumbs'
 import { TocLink } from '@/components/Toc'
 
@@ -18,12 +18,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
     const index = await getSectionIndex(params.section)
+    const subsection = await getSubSections(params.section)
     return {
-        props: { ...index }
+        props: { ...index, subsection, section: params.section }
     }
 }
 
-const Section = ({ title, content, toc}: any) => {
+const Section = ({ title, content, toc, subsection, section }: any) => {
     useEffect(() => {
         hljs.highlightAll()
     }, [])
@@ -35,18 +36,30 @@ const Section = ({ title, content, toc}: any) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main> 
-                <Navbar />  
-            <section className="mt-28 flex justify-center max-w-screen">
-               
-                   <div className='w-[320px] sm:w-auto'>
-                    <BreadCrumbs/>
-                    <article className='prose inline-block lg:prose-xl dark:prose-invert text-justify mx-5 ' dangerouslySetInnerHTML={{ __html: content }}>
-                    </article>
+            <main>
+                <Navbar mode='sticky' />
+                <section className="flex justify-center max-w-screen">
+                    <nav className='hidden md:block mr-[100px]'>
+                        {toc != undefined ? <label className="font-bold mb-1" htmlFor="toc">{title}</label> : ''}
+                        <ol className='pt-1 capitalize'>
+                            {
+                                subsection.map((sub: string, index: number) =>
+                                    <li key={index} className="pl-1 mb-1">
+                                        <a href={`./${section}/${sub}`}>
+                                            {sub.replace(/_/g, ' ')}
+                                        </a>
+                                    </li>)
+                            }
+                        </ol>
+                    </nav>
+                    <div className='w-[320px] sm:w-auto'>
+                        <BreadCrumbs />
+                        <article className='prose inline-block lg:prose-xl dark:prose-invert text-justify mx-5 ' dangerouslySetInnerHTML={{ __html: content }}>
+                        </article>
                     </div>
-                    <nav className='hidden md:flex'>
-                        {toc != undefined ? <label className="font-bold fixed top-20" htmlFor="toc">Table of content</label>: ''}
-                        <TocLink dic={toc}/>
+                    <nav className='hidden md:block'>
+                        {toc != undefined ? <label className="font-bold mb-1" htmlFor="toc">Table of content</label> : ''}
+                        <TocLink dic={toc} />
                     </nav>
                 </section>
             </main>

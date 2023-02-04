@@ -41,11 +41,11 @@ const Subsection = ({ title, content, toc }: any) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <Navbar />
-                <section className="mt-[100px] m-auto flex justify-center">
+                <Navbar mode="sticky"/>
+                <section className="m-auto flex justify-center">
                     <div>
                     <BreadCrumbs />
-                    <article className='prose dark:prose-invert max-w-[65ch]' dangerouslySetInnerHTML={{ __html: content }}>
+                    <article className='prose dark:prose-invert max-w-[65ch] mx-5' dangerouslySetInnerHTML={{ __html: content }}>
                     </article>
                     </div>
                     <nav>
