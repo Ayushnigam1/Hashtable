@@ -71,7 +71,7 @@ const Searchpage = ({ section, question, }: { section: Section[]; question: Ques
                                                 <td
                                                     className="border-b border-gray-300 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400 capitalize"
                                                 >
-                                                    <a href={`./questions/${question}`}>
+                                                    <a href={`./questions/${question.id}`}>
                                                         {question.id.replace(/_/g, ' ')}
                                                     </a>
                                                 </td>
