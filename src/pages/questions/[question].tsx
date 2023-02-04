@@ -43,7 +43,7 @@ const Question = ({ title, date, content, toc }: any) => {
                         <div className="text-gray-400 text-sm py-2">
                             {`Last updated on ${date}`}
                         </div>
-                        <article className="prose dark:prose-invert w-[80%]" dangerouslySetInnerHTML={{ __html: content }}>
+                        <article className="prose lg:prose-xl dark:prose-invert w-[80%]" dangerouslySetInnerHTML={{ __html: content }}>
                         </article>
                     </div>
                     <nav className="sticky h-[539px]">

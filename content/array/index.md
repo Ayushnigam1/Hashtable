@@ -1,0 +1,42 @@
+---
+title: Array
+date: 04-02-2022
+tags: ["array", "dsa", "list"]
+toc: 
+    array:
+---
+
+## Array
+
+>An array is a linear data structure, containing items in contiguous memory
+
+Since it's contiguous memory blocks, the array items can be indexed, the index 
+of the first element is **base index** and subsequent items can be obtained by
+add **offset** to the base index.
+
+Value of the offset depends on the type of data we are storing in the array
+
+Size of the array is fixed, Once a array is declared a fixed amount of memory
+is allocated for it.
+
+Memory address for a item in array is calculated as:
+$$memory\ address = base\ address + index * sizeof(item)$$
+
+### Operations in Array
+
+#### Insertion
+We can insert a value at a specific index, if the index exists, as the array 
+provides random access.
+
+Time complexity - O(1)
+
+#### Access
+We can access a value at a specific index, if the index exists.
+
+#### Searching
+We can search for a item in a array. One can access all the items in the array
+till the required item is found.
+
+Time complexity
+- [Linear Search](https://hashtable.pages.dev/array/linear_search) - O(n)
+- [Binary Search](https://hashtable.pages.dev/array/binary_search) - O(log(n))

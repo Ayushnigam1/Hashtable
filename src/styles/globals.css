@@ -9,4 +9,5 @@ body {
 /* for removing background from highlight js */
 .hljs {
     background-color: transparent !important;
+    padding: 0 !important;
 }

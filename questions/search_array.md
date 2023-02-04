@@ -1,0 +1,65 @@
+---
+title: "Add two linked List"
+date: "2020-01-01"
+tags: ["C++", "linked list", "data structure", "merge"]
+difficulty: "Hard"
+toc:
+    search_in_a_array:
+---
+
+## Search in a Array
+Given a sorted array of integers and an integer **x**, print **true** if **x** is in array
+and **false** otherwise.
+
+Input:
+- first line will contain the array
+- Second line will the input x
+```
+1 2 3 4 5
+5
+```
+Output:
+- **true** if x if found **false** otherwise
+```
+true
+```
+
+#### Approach 1: Linear Search
+A naive or brute force approach can be doing a linear search throughout the
+array.
+```
+arr = list(map(int, input().split()))
+x = int(input())
+for i in range(len(arr)):
+    if x == arr[i]:
+        print("true")
+        exit()
+print("false")
+```
+The above code traverses through the array, if any element equals, the target
+element **x**, it print **true** and exits the loop, if it could not find 
+the target element, it prints **false**.
+
+**Time Complexity:** O(n), where n is the number of elements
+
+#### Approach 2: Binary Search
+A better approach from Linear Search can be Binary Search, which uses, **Divide
+and Conquer** technique to save time. <mark> This approach can only be used in a
+sorted array </mark>
+
+    arr = list(map(int, input().split()))
+    x = int(input())
+    lo = 0
+    hi = len(arr) - 1
+    while lo < hi:
+        mid = (lo + hi) // 2
+        if (x < arr[mid]):
+            hi = mid
+        elif (x > arr[mid]):
+            lo = mid + 1
+        else:
+            print("true")
+            exit()
+    print("false")
+
+To know more about Binary Search, read the article [here](http://hashtable.pages.dev/array/binary_search)

@@ -75,7 +75,7 @@ const Search = (props: { items?: { label: string }[], tags?: string[], input?: s
                 <input
                     className="flex-grow min-h-full font-semibold outline-none z-20 bg-gray-400 dark:bg-gray-400"
                     value={searchTerm}
-                   
+
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onFocus={(_) => setFocus(true)}
                     onKeyDown={(event: any) => {
