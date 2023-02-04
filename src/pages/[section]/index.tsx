@@ -25,6 +25,7 @@ export async function getStaticProps({ params }: any) {
 }
 
 const Section = ({ title, content, toc, subsection, section }: any) => {
+    console.log(subsection.length);
     useEffect(() => {
         hljs.highlightAll()
     }, [])

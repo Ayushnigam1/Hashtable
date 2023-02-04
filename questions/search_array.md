@@ -1,8 +1,8 @@
 ---
-title: "Add two linked List"
+title: "Search in an array"
 date: "2020-01-01"
 tags: ["C++", "linked list", "data structure", "merge"]
-difficulty: "Hard"
+difficulty: "Medium"
 toc:
     search_in_a_array:
 ---

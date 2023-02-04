@@ -1,0 +1,89 @@
+---
+title: "Palindrome of a string"
+date: "2023-02-04"
+tags: ["string", "Palindrome", "data structure", "two pointers"]
+difficulty: "Medium"
+toc:
+    Palindrome of a string:
+---
+
+## Palindrome of a string
+Given a string,you need to check wheather a string is **palindrome** or **not palindrome**.
+
+### Palindrome string
+> A string is said to be palindrome if given string and reverse of that string will same.In other words, A string, that reads same from backward and forward is known as palindrome. for example - level or madam.
+
+Input 1:
+- first line will contain the string
+```
+hashtable
+```
+Output:
+- print **palindrome** if string is palindrome or print **not palindrome** if not palindrome.
+```
+not palindrome
+```
+Explanation: since **h is not equal to e** so string will break here and print not palindrome.
+Input 2:
+```
+input - racecar
+
+output - palindrome
+```
+
+#### Approach 1:
+A naive approach is to take two pointers to traverse the string from both ends and compares the characters at the two pointers.
+
+```
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main() {
+string s;
+cout<<"Enter a string: ";
+cin>>s;
+
+int flag = 1;
+int n = s.length();
+for(int i=0; i<n; i++) {
+    if(s[i] != s[n-i-1]) {
+        flag = 0;
+        break;
+    }
+}
+if(flag) cout<<"palindrome."<<endl;
+else cout<<"not  palindrome."<<endl;
+return 0;
+}
+```
+**Time Complexity :** \\(\mathcal{O}(n) \\),where n is the length of string.
+
+#### Approach 2:
+- In above solution we are running loop till n which is not necessary because it is repeating the same character after n/2 so run the loop till n/2.
+
+- here in the code we are using two pointer as **i and n-i** and only change is run loop till half of the string
+```
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main() {
+string s;
+cout<<"Enter a string: ";
+cin>>s;
+
+int flag = 1;
+int n = s.length();
+for(int i=0; i<n/2; i++) {
+    if(s[i] != s[n-i-1]) {
+        flag = 0;
+        break;
+    }
+}
+if(flag) cout<<"palindrome."<<endl;
+else cout<<"not  palindrome."<<endl;
+return 0;
+}
+```
+**Time Complexity :** \\(\mathcal{O}(\frac{n}{2}\) \\),where n is the length of string.

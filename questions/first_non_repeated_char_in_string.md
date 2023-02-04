@@ -1,0 +1,49 @@
+---
+title: "First non repeated char in the string"
+date: "2023-02-04"
+tags: ["string", "data structure", "hashmap"]
+difficulty: "Medium"
+toc:
+    First non-repeated char:
+---
+## First non repeated char in  the string
+Given a string s consisting of characters,you need to print the **first non-repeated char** from that string.
+
+Input 1:
+- first line will contain the string
+
+```
+hashtable
+```
+Output:
+- print the first non-repeated char.
+```
+s
+```
+Explanation: here **h and a** are two times in the string but **s** in the first char in the string whose occurance is one. 
+
+Input 2:
+```
+input - algorithm
+
+output - a
+```
+#### Approach 1:
+
+The naive approach is to run a loop over the string and find the occurance of the character in the string, at any moment if the occurance is 1, return the character.
+```
+code
+```
+#### Approach 2:
+
+Here's an optimised approach by make use of **hashmap**.
+
+- Create an empty map to store the count of each character in the string.
+- Loop through the string, and for each character, update the count in the map.
+- Loop through the string again, and check the count of each character in the map. If the count is 1, return the character, as it's the first non-repeated character.
+  
+This approach has a time complexity of **O(n)**, where n is the length of the string.
+
+```
+code
+```

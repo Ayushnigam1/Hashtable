@@ -1,0 +1,73 @@
+---
+title: "Reverse of a string"
+date: "2023-02-04"
+tags: ["string", "Reverse", "data structure"]
+difficulty: "Medium"
+toc:
+    Reverse of a string:
+---
+
+## Reverse of a string
+Given a string,you need to print **reverse** of that string.
+
+Input:
+- first line will contain the string
+```
+hashtable
+```
+Output:
+- print it's reverse.
+```
+elbathsah
+```
+#### Approach 1: 
+A naive or brute force approach can be using another string.
+- Take a str variable.
+- A for loop is then used to iterate through the string in reverse, adding each character to a new string, reversed_str. 
+- Finally, the reversed string printed.
+```
+#include <iostream>
+#include <string>
+
+using namespace std;
+int main() {
+    string str;
+    cout << "Enter a string: ";
+    cin >> str;
+    string reversed_str;
+    for (int i = str.length() - 1; i >= 0; i--) {
+        reversed_str += str[i];
+    }
+    cout << "Reversed string: " << reversed_str << endl;
+    return 0;
+}
+```
+**Time Complexity :** \\(\mathcal{O}(n) \\),where n is the length of string.
+
+**Space Complexity :** \\(\mathcal{O}(n) \\), since we are using extra variable.
+
+#### Approach 2:
+Here is an optimized approach with constant space.
+```
+#include <iostream>
+#include <string>
+using namespace std;
+int main() {
+  string str;
+  cin >> str;
+
+  int n = str.length();
+  for (int i = 0; i < n / 2; i++) {
+    char temp = str[i];
+    str[i] = str[n - i - 1];
+    str[n - i - 1] = temp;
+  }
+
+  cout << str << endl;
+
+  return 0;
+}
+```
+**Time Complexity :** \\(\mathcal{O}(\frac{n}{2}\) \\),where n is the length of string.
+
+**Space Complexity :** \\(\mathcal{O}(1) \\).

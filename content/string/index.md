@@ -1,0 +1,25 @@
+---
+title: String
+date: 04-02-2022
+tags: ["string", "dsa", "char"]
+toc: 
+    string:
+---
+
+## String
+
+> A string is defined as a sequence of characters.It is terminated with special symbol '\0'.
+
+String is often used to represent text or a **combination of characters** that form a word or a sentence.
+
+Some example of strings are:
+```
+"hashtable", "hello","ab12hash".
+```
+
+### String representation in Memory
+
+Strings are stored in memory as an array of characters, where each character is represented by a numerical value, such as **ASCII or Unicode** , which are then stored in adjacent memory locations, and a null terminator is used to indicate the end of the string.
+The **null terminator** is a special character with a value of **0**, which is used to indicate the end of the string.
+
+>The string "hello" would be stored in memory as the following series of ASCII values: 104, 101, 108, 108, 111, 0. The last value, 0, is the null terminator and indicates the end of the string.
