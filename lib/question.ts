@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import showdown from 'showdown'
+import { generateMdx } from './mdx'
 
 const questionDirectory = path.join(process.cwd(), 'questions')
 
@@ -13,7 +14,7 @@ export interface Question {
 export async function getQuestions(): Promise<Question[]> {
     const fileNames = fs.readdirSync(questionDirectory)
     const allQuestions = fileNames.map((fileName) => {
-        const id = fileName.replace(/\.md$/, '');
+        const id = fileName.replace(/\.mdx$/, '');
         // Read markdown file as string
         const fullPath = path.join(questionDirectory, fileName);
         const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -30,18 +31,9 @@ export async function getQuestions(): Promise<Question[]> {
 
 // Returns question with id and content
 export async function getQuestionById(question: string) {
-    const filePath = path.join(questionDirectory, `${question}.md`)
+    const filePath = path.join(questionDirectory, `${question}.mdx`)
     const fileContents = fs.readFileSync(filePath, 'utf8')
     const matterResult = matter(fileContents)
 
-    var mdconverter = new showdown.Converter()
-
-    const processedContent = mdconverter.makeHtml(matterResult.content)
-
-    const content = processedContent.toString()
-
-    return {
-        ...matterResult.data,
-        content
-    }
+    return await generateMdx(matterResult.content)
 }

@@ -33,7 +33,9 @@ export default function Home({ data }: { data: Section[] }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
+               
                 <Navbar />
+                
                 <Hero>
                     <h4 className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl">Stuck in a Problem?</h4>
                     <Search />
