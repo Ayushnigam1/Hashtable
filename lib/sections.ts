@@ -2,6 +2,11 @@ import fs, { readdirSync } from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 import showdown from 'showdown'
+import { serialize } from 'next-mdx-remote/serialize'
+
+import latex from 'rehype-katex'
+import math from 'remark-math'
+import toc from '@jsdevtools/rehype-toc'
 
 const sectionDirectory = path.join(process.cwd(), 'content')
 
@@ -23,25 +28,18 @@ export async function getSubSections(section: string) {
     }
 }
 
-export interface Section {
-    [key: string]: any,
-    content: string,
-}
-export async function getSectionIndex(section: string): Promise<Section> { 
-    const sectionIndex = path.join(sectionDirectory, section, 'index.md')
+// exports parsed MDX
+export async function getSectionIndex(section: string) { 
+    const sectionIndex = path.join(sectionDirectory, section, 'index.mdx')
     const fileContents = fs.readFileSync(sectionIndex, 'utf8')
-    const matterResult = matter(fileContents)
+    const source = matter(fileContents)
+    
+    const mdxSource = await serialize(source.content, {parseFrontmatter: true, mdxOptions: {
+        remarkPlugins: [math],
+        rehypePlugins: [latex, toc]
+    }})
 
-    var mdconverter = new showdown.Converter()
-
-    const processedContent = mdconverter.makeHtml(matterResult.content)
-
-    const content = processedContent.toString()
-
-    return {
-        ...matterResult.data,
-        content
-    }
+    return mdxSource
 }
 
 export async function getSubsectionPost(section: string, subsection: string) {

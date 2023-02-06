@@ -27,7 +27,8 @@ true
 #### Approach 1: Linear Search
 A naive or brute force approach can be doing a linear search throughout the
 array.
-```
+
+```python
 arr = list(map(int, input().split()))
 x = int(input())
 for i in range(len(arr)):
@@ -47,19 +48,38 @@ A better approach from Linear Search can be Binary Search, which uses, **Divide
 and Conquer** technique to save time. <mark> This approach can only be used in a
 sorted array </mark>
 
-    arr = list(map(int, input().split()))
-    x = int(input())
-    lo = 0
-    hi = len(arr) - 1
-    while lo < hi:
-        mid = (lo + hi) // 2
-        if (x < arr[mid]):
-            hi = mid
-        elif (x > arr[mid]):
-            lo = mid + 1
-        else:
-            print("true")
-            exit()
-    print("false")
+```python
+arr = list(map(int, input().split()))
+x = int(input())
+lo = 0
+hi = len(arr) - 1
+while lo < hi:
+    mid = (lo + hi) // 2
+    if (x < arr[mid]):
+        hi = mid
+    elif (x > arr[mid]):
+        lo = mid + 1
+    else:
+        print("true")
+        exit()
+print("false")
+```
 
+```cpp
+int binary_search(int arr[], int key, int length) {
+    int low = 0, high = length - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (key < arr[mid]) {
+            high = mid - 1;
+        } else if (key > arr[mid]) {
+            low = mid + 1;
+        } else {
+            cout << mid;
+            return;
+        }
+    }
+    cout << -1;
+}
+```
 To know more about Binary Search, read the article [here](http://hashtable.pages.dev/array/binary_search)
