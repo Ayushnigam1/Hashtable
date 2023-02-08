@@ -9,21 +9,21 @@ import { getSectionIndex, getSections, Section } from "lib/sections";
 export async function getStaticProps() {
     const sections = await getSections();
 
-    const data: Section[] = await Promise.all(
+    const sectionData = await Promise.all(
         sections.map(async (section: string) => {
-            const sectionData: Section = await getSectionIndex(section)
-            return { section, ...sectionData }
+            const sectionData = await getSectionIndex(section)
+            return { section, data: sectionData }
         })
     )
 
     return {
         props: {
-            data
+            ...sectionData
         },
     };
 }
 
-export default function Home({ data }: { data: Section[] }) {
+export default function Home({ section, data }: { section: string, data: any }) {
     return (
         <>
             <Head>
@@ -33,9 +33,9 @@ export default function Home({ data }: { data: Section[] }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-               
+
                 <Navbar />
-                
+
                 <Hero>
                     <h4 className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl">Stuck in a Problem?</h4>
                     <Search />
@@ -44,12 +44,12 @@ export default function Home({ data }: { data: Section[] }) {
                 <section className="xl:max-w-[120ch] mx-4 mt-4 xl:mx-auto">
                     <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 gap-4">
                         {
-                            data.map((section: Section, idx: number) => {
+                            data.map((sec: any, idx: number) => {
                                 return <Cards
                                     className="rounded-lg shadow-lg bg-transparent max-h-fit opacity-80 hover:bg-gray-300 hover:shadow-2xl hover:opacity-100 relative"
                                     key={idx}
-                                    title={section.title}
-                                    url={section.section}
+                                    title={sec.frontmatter.title}
+                                    url={section}
                                 />;
                             })
                         }

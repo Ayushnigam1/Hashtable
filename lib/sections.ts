@@ -6,6 +6,10 @@ import { generateMdx } from './mdx'
 
 const sectionDirectory = path.join(process.cwd(), 'content')
 
+export interface Section {
+    id: string;
+    [key: string]: string;
+}
 export async function getSections() {
     const sections = fs.readdirSync(sectionDirectory)
     const allSections: string[] = sections.map((sectionName) => {
