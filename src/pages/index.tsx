@@ -45,10 +45,12 @@ export default function Home({ data }: { data: Section[] }) {
                     <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 gap-4">
                         {
                             data.map((section: Section, idx: number) => {
+                                console.log(section);
                                 return <Cards
                                     className="rounded-lg shadow-lg bg-transparent max-h-fit opacity-80 hover:bg-gray-300 hover:shadow-2xl hover:opacity-100 relative"
                                     key={idx}
-                                    title={section.title}
+
+                                    title={section.section}
                                     url={section.section}
                                 />;
                             })
