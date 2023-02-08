@@ -7,6 +7,8 @@ import "highlight.js/styles/github-dark.css";
 import { getSectionIndex, getSections, getSubSections } from "lib/sections";
 import { BreadCrumbs } from "@/components/BreadCrumbs";
 import { MDXRemote } from "next-mdx-remote";
+import { FaCross, FaEllipsisH } from "react-icons/fa";
+import { FiCrosshair } from "react-icons/fi";
 
 export async function getStaticPaths() {
   const sections = await getSections();
@@ -25,9 +27,14 @@ export async function getStaticProps({ params }: any) {
 }
 
 const Section = ({ source, subsection, section }: any) => {
-  useEffect(() => {
+ const [css,setcss]=useState('');
+    useEffect(() => {
     hljs.highlightAll();
   }, []);
+  const openSidebar=()=>{
+    css=="hidden"?setcss("contents"):setcss("hidden");
+  }
+ 
   return (
     <>
       <Head>
@@ -42,12 +49,22 @@ const Section = ({ source, subsection, section }: any) => {
       </Head>
       <main>
         <Navbar mode="sticky" />
-        <section className="flex justify-center max-w-screen">
-            <div className="hidden md:contents">
-          <div className="h-screen w-[250px]  fixed md:sticky top-0 bg-gray-100 overflow-y-auto z-10 dark:bg-black dark:scrollbar-thumb-gray-700 scrollbar-thumb-gray-300 scrollbar-track-gray-200 scrollbar-thin dark:scrollbar-track-gray-500 dark:scrollbar-blue-700">
+        <section className="flex justify-center w-full">
+          
+           
+          <div className={`h-screen w-80 sm:w-[250px] sm:sticky fixed top-18 bg-gray-100 overflow-y-auto z-10 dark:bg-black dark:scrollbar-thumb-gray-700 scrollbar-thumb-gray-300 scrollbar-track-gray-200 scrollbar-thin dark:scrollbar-track-gray-500 dark:scrollbar-blue-700`}>
+            <span className=" p-2 flex justify-center  text-2xl font-semibold " >Subsections</span>
+           
+         {/* <div className="contents sm:hidden">
+          <div className={`relative   items-center flex justify-around`}  >
+            <span className="cursor-pointer " >Subsections</span>
+            <span className={`ml-28 sm:hidden cursor-pointer `} onClick={openSidebar}>
+           <FiCrosshair/></span>
+          </div></div> */}
+          <hr/>
             <div className="ml-1 mb-10">
                 {subsection.map((sub: string, index: number) => (
-                    <div key={index} className="my-1 flex flex-col font-semibold text-lg cursor-pointer relative rounded p-2 hover:bg-gray-200 dark:hover:bg-gray-800">
+                    <div key={index} className="my-1 flex flex-col font-semibold text-lg cursor-pointer border-b  rounded p-2 hover:bg-gray-200 dark:hover:bg-gray-800">
                       <a href={`./${section}/${sub}`}>
                         {sub.replace(/_/g, " ")}
                       </a>
@@ -56,9 +73,10 @@ const Section = ({ source, subsection, section }: any) => {
                 ))}
              </div>
             </div>
-          </div>
+       
           
-          <div className="w-[320px] sm:w-auto">
+          <div className="w-[320px] sm:w-auto border shadow-sm static">
+          
             <BreadCrumbs />
             <article className="prose inline-block lg:prose-xl dark:prose-invert text-justify mx-5">
               {source && <MDXRemote {...source} />}
