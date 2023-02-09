@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState, } from "react";
+import React, { MouseEventHandler, useEffect, useRef, useState, } from "react";
 import { FiCode, FiSearch, FiX } from "react-icons/fi/";
 import Router from "next/router";
 import Tag from './Tag';
 
-const Search = (props: { items?: { label: string }[], tags?: string[], input?: string }) => {
+const Search = (props: { items?: { label: string }[], input?: string, onEnter?: (e: string) => void }) => {
     // user input string
     const [searchTerm, setSearchTerm] = useState(props.input != undefined ? props.input : "");
 
@@ -13,14 +13,11 @@ const Search = (props: { items?: { label: string }[], tags?: string[], input?: s
     // A reference to the outmost div of search component
     const comboBoxRef = useRef<HTMLDivElement>(null);
 
-    // List of items to be brought from backendl
+    // List of items to be brought from backend
     const [items, setItems] = useState(props.items != undefined ? props.items! : []);
 
     // filtered item list based on [searchTerm]
     const [filterItems, setFilterItems] = useState<any>([]);
-
-    // build tag sections
-    const [tags, setTags] = useState<string[]>(props.tags != undefined ? props.tags! : []);
 
     // For events related to the search box
     useEffect(() => {
@@ -48,19 +45,6 @@ const Search = (props: { items?: { label: string }[], tags?: string[], input?: s
         );
     }, [searchTerm, items, isFocused]);
 
-    const handleclick = () => {
-        Router.push(`/search?keyword=${searchTerm.toLowerCase()}`);
-    }
-
-    const handleAdd = (tag: string) => {
-        setTags([...tags, tag]);
-    };
-
-    const handleRemove = (tag: string) => {
-        setTags(tags.filter((t) => t !== tag));
-        Router.back();
-    };
-
     return (
         <div className="max-w-[600px] w-full ">
 
@@ -69,7 +53,11 @@ const Search = (props: { items?: { label: string }[], tags?: string[], input?: s
                 ref={comboBoxRef}
             >
 
-                <button className="p-3 hover:bg-gray-500 rounded-full bg-gray-400 relative z-20" onClick={handleclick}>
+                <button className="p-3 hover:bg-gray-500 rounded-full bg-gray-400 relative z-20" onClick={(e) => {
+                    if (props.onEnter != undefined)
+                        props.onEnter(searchTerm)
+                }
+                }>
                     <FiSearch size={18} />
                 </button>
                 <input
@@ -79,14 +67,10 @@ const Search = (props: { items?: { label: string }[], tags?: string[], input?: s
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onFocus={(_) => setFocus(true)}
                     onKeyDown={(event: any) => {
-                        if (event.key === 'Enter') {
-
-                            handleAdd(event.target.value);
-                            Router.push(`/search?keyword=${searchTerm.toLowerCase()}`);
-                            event.target.value = '';
+                        if (event.key === 'Enter' && props.onEnter != undefined) {
+                            props.onEnter(searchTerm)
                         }
-                    }
-                    }
+                    }}
                 />
                 <button
                     className="p-3 hover:bg-gray-500 rounded-full z-20"
@@ -115,9 +99,6 @@ const Search = (props: { items?: { label: string }[], tags?: string[], input?: s
 
             <div className="flex mt-4 gap-3 max-w-[500px]">
                 {
-                    tags.map((tag) => (
-                        <Tag key={tag} tag={tag} onRemove={handleRemove} />
-                    ))
                 }
             </div>
 

@@ -17,4 +17,5 @@ export default class _document extends React.Component {
             </Html>
         )
     }
+
 }

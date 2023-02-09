@@ -3,7 +3,7 @@ import { ReactNode } from "react"
 export interface HeroProps {
     background?: string;
     children: ReactNode;
-    length:string;
+    length?:string;
 }
 
 export const Hero = (props: HeroProps) => {

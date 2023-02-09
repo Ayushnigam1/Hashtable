@@ -33,7 +33,6 @@ export async function getQuestions(): Promise<Question[]> {
 export async function getQuestionById(question: string) {
     const filePath = path.join(questionDirectory, `${question}.mdx`)
     const fileContents = fs.readFileSync(filePath, 'utf8')
-    const matterResult = matter(fileContents)
 
-    return await generateMdx(matterResult.content)
+    return await generateMdx(fileContents)
 }

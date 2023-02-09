@@ -6,9 +6,12 @@ import toc from '@jsdevtools/rehype-toc'
 
 // function for converting markdown to object
 export async function generateMdx(source: string) {
-    const mdxSource = await serialize(source, {parseFrontmatter: true, mdxOptions: {
-        remarkPlugins: [math],
-        rehypePlugins: [latex, toc]
-    }})
+    const mdxSource = await serialize(source, {
+        parseFrontmatter: true,
+        mdxOptions: {
+            remarkPlugins: [math],
+            rehypePlugins: [latex, toc]
+        }
+    })
     return mdxSource
 }
