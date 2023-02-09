@@ -11,6 +11,9 @@
   "dependencies": {
     "@headlessui/react": "^1.7.7",
     "@jsdevtools/rehype-toc": "^3.0.2",
+    "@mantine/core": "5.10.3",
+    "@mantine/hooks": "5.10.3",
+    "@mantine/next": "5.10.3",
     "@next/font": "13.1.2",
     "@types/jquery": "^3.5.16",
     "@types/marked": "^4.0.8",

@@ -6,6 +6,7 @@ import Search from "@/components/Search";
 import Footer from "@/components/Footer";
 import { getSectionIndex, getSections, Section } from "lib/sections";
 
+
 export async function getStaticProps() {
     const sections = await getSections();
 
