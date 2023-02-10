@@ -144,7 +144,7 @@ const Searchpage = ({ question }: { question: any[] }) => {
                     </table>
                 </div>
             </section>
-            {/* <Footer/> */}
+        
         </>
     );
 };

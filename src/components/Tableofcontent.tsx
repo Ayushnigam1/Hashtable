@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { createStyles, Box, Text, Group } from '@mantine/core';
-// import { IconListSearch } from '@tabler/icons';
+import {MdOutlineManageSearch} from 'react-icons/md';
+
+
 
 const LINK_HEIGHT = 38;
 const INDICATOR_SIZE = 10;
@@ -47,11 +49,11 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface TableOfContentsFloatingProps {
+interface TableOfContentsProps {
   links: { label: string; link: string; order: number }[];
 }
 
-export function TableOfContentsFloating({ links }: TableOfContentsFloatingProps) {
+export function TableOfContents({ links }: TableOfContentsProps) {
   const { classes, cx } = useStyles();
   const [active, setActive] = useState(2);
 
@@ -72,8 +74,9 @@ export function TableOfContentsFloating({ links }: TableOfContentsFloatingProps)
   ));
 
   return (
-    <div>
+    <div className='mr-10'>
       <Group mb="md">
+        <MdOutlineManageSearch size={18} />
         <Text>Table of contents</Text>
       </Group>
       <div className={classes.links}>

@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import React, { useEffect, useState } from "react";
-import Footer from "@/components/Footer";
+import {Footer} from "@/components/Footer";
 import Head from "next/head";
 import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";
@@ -9,7 +9,7 @@ import { BreadCrumbs } from "@/components/BreadCrumbs";
 import { MDXRemote } from "next-mdx-remote";
 import { FaCross, FaEllipsisH } from "react-icons/fa";
 import { FiCrosshair } from "react-icons/fi";
-import { TableOfContentsFloating } from "@/components/Tableofcontent";
+import {TableOfContents}  from "@/components/Tableofcontent";
 
 export async function getStaticPaths() {
   const sections = await getSections();
@@ -47,10 +47,10 @@ const Section = ({ source, subsection, section }: any) => {
       <main>
         <Navbar mode="sticky" />
         <section className="flex justify-center w-full">
-          <TableOfContentsFloating links={subsection.map((sub:string,index:number)=>sub)} />
+          <TableOfContents links={subsection}  ></TableOfContents>
    
           
-          <div className="w-[320px] sm:w-auto border shadow-sm static">
+          <div className="w-[320px] sm:w-auto rounded-md shadow-md shadow-gray-400 dark:shadow-gray-200 static">
           
             <BreadCrumbs />
             <article className="prose inline-block lg:prose-xl dark:prose-invert text-justify mx-5">
