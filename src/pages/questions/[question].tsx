@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import React, { useEffect } from "react";
-import Footer from "@/components/Footer";
+import {Footer} from "@/components/Footer";
 import { getQuestionById, getQuestions } from "lib/question";
 import Head from "next/head";
 import hljs from 'highlight.js'

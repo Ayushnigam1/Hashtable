@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import React from "react";
-import Footer from "@/components/Footer";
+import {Footer} from "@/components/Footer";
 import Head from "next/head";
 import { getSections, getSubsectionPost, getSubSections } from "lib/sections";
 import { BreadCrumbs } from "@/components/BreadCrumbs";
