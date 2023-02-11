@@ -34,7 +34,7 @@ export function Footer() {
       <Container className={classes.inner}>
        <div className='text-xl font-bold'>HashTable</div>
        <Text color="dimmed" size="sm">
-          © 2020 mantine.dev. All rights reserved.
+          © 2023 mantine.dev. All rights reserved.
         </Text>
       </Container>
     </div>

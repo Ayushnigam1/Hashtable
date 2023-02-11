@@ -11,3 +11,12 @@ body {
     background-color: transparent !important;
     padding: 0 !important;
 }
+
+.toc {
+    @apply xl:fixed xl:right-[4rem] text-base xl:top-[4rem]
+}
+
+.toc::before {
+    content: "Table of contents";
+    @apply text-lg font-semibold
+}

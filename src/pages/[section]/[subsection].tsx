@@ -4,8 +4,8 @@ import {Footer} from "@/components/Footer";
 import Head from "next/head";
 import { getSections, getSubsectionPost, getSubSections } from "lib/sections";
 import { BreadCrumbs } from "@/components/BreadCrumbs";
-import { TocLink } from "@/components/Toc";
 import { MDXRemote } from "next-mdx-remote";
+import { TableOfContents } from "@/components/Tableofcontent";
 
 export async function getStaticPaths() {
     const sections = await getSections()
@@ -24,15 +24,18 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
     const content = await getSubsectionPost(params.section, params.subsection)
+    const subsection = await getSubSections(params.section)
 
     return {
         props: {
-            source: content
+            source: content,
+            section: params.section,
+            subsection
         }
     }
 }
 
-const Subsection = ({ source }: any) => {
+const Subsection = ({ source, section, subsection }: any) => {
     return (
         <>
             <Head>
@@ -41,18 +44,20 @@ const Subsection = ({ source }: any) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main>
-                <Navbar mode="sticky"/>
-                <section className="m-auto flex justify-center">
-                    <div>
-                    <BreadCrumbs />
-                    <article className='prose dark:prose-invert max-w-[65ch] mx-5'>
-                        {source && <MDXRemote {...source}/>}
-                    </article>
+            <div className="w-full flex">
+                <TableOfContents links={subsection} section={section}/>
+                <main className="flex-grow flex">
+                    <div className="flex-grow sm:w-auto relative justify-between px-4">
+                        <div className="h-8"/>
+                        <article className="xl:w-[80ch] m-auto prose lg:prose-xl dark:prose-invert text-justify">
+                            <h2 className="capitalize">{source.frontmatter.title}</h2>
+                            {source && <MDXRemote {...source} />}
+                        </article>
+                        <div className="h-8"/>
                     </div>
-                </section>
-            </main>
-            <Footer />
+                    <div className="xl:min-w-[250px]" />
+                </main>
+            </div>
         </>
     )
 }

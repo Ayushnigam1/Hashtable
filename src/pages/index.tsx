@@ -3,8 +3,7 @@ import Navbar from "@/components/Navbar";
 import Cards from "@/components/Cards";
 import { Hero } from "@/components/Hero";
 import Search from "@/components/Search";
-import {Footer} from "@/components/Footer";
-import Router from "next/router";
+import { Footer } from "@/components/Footer";
 import { getSectionIndex, getSections } from "lib/sections";
 
 
@@ -40,16 +39,15 @@ export default function Home(data: any) {
 
                 <Hero>
                     <h4 className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl">Stuck in a Problem?</h4>
-                    <Search onEnter={(searchTerm) => Router.push(`/search?keyword=${searchTerm.toLowerCase()}`)} />
+                    <Search/>
                 </Hero>
 
                 <section className="xl:max-w-[120ch] mx-4 mt-4 xl:mx-auto">
                     <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 gap-4">
                         {
                             data.sectionData.map((sec: any, idx: number) => {
-                             
+
                                 return <Cards
-                                    className="rounded-lg shadow-lg bg-transparent max-h-fit opacity-80 hover:bg-gray-300 hover:shadow-2xl hover:opacity-100 relative"
                                     key={idx}
                                     title={sec.data.frontmatter.title}
                                     url={sec.section}

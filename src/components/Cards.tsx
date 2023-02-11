@@ -1,62 +1,16 @@
 import React from 'react'
 import Router from 'next/router'
-import { createStyles, Paper, Text, Title, Button } from '@mantine/core';
+import { Paper, Button } from '@mantine/core';
 
-const useStyles = createStyles((theme) => ({
-  card: {
-    height: 300,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-
-  title: {
-    fontFamily: `Greycliff CF ${theme.fontFamily}`,
-    fontWeight: 900,
-    color: theme.white,
-    lineHeight: 1.2,
-    fontSize: 28,
-    marginTop: theme.spacing.xs,
-  },
-
-  category: {
-    color: theme.white,
-    opacity: 0.7,
-    fontWeight: 700,
-    textTransform: 'uppercase',
-  },
-}));
-
-
-
-
-const Cards = ({className, title, subtitle, url}: { title: string, subtitle?: string, className?: string, url?: string}) => {
-    const { classes } = useStyles();
+const Cards = ({ title, url }: { title: string, url?: string }) => {
     return (
         <>
-<Paper
-      shadow="md"
-      p="xl"
-      radius="md"
-      
-      className={`bg-gradient-to-r from-violet-500 to-fuchsia-500 opacity-80 hover:bg-gray-300 hover:shadow-2xl hover:opacity-100 ${classes.card}`}
-    >
-      <div>
-        <Text className={classes.category} size="xs">
-          {subtitle}
-        </Text>
-        <Title order={3} className={classes.title}>
-          {title}
-        </Title>
-      </div>
-      <Button variant="white" color="dark" onClick={()=>{Router.push(`${url}`)}}>
-        Read {title}
-      </Button>
-    </Paper>
-
+            <Paper className='flex flex-col justify-between border-gray-100 dark:border-0 border items-start bg-white dark:bg-slate-700 min-h-[200px]' p='lg' shadow={'md'} radius="md">
+                <h4 className='text-xl text-gray-700 font-semibold dark:text-white'>{title}</h4>
+                <a className='px-3 py-2 dark:text-white text-gray-700 text-sm rounded-xl dark:bg-slate-800 bg-slate-300' href={`./${url}`}>
+                    Read {title}
+                </a>
+            </Paper>
         </>
     )
 }

@@ -68,7 +68,7 @@ const Searchpage = ({ question }: { question: any[] }) => {
     };
 
     useEffect(() => {
-        setQuestions(search(searchdata, tags, difficulty, topics, question))
+        if (searchdata != undefined) setQuestions(search(searchdata, tags, difficulty, topics, question))
     }, [question, searchdata, tags, difficulty, topics])
 
     return (
@@ -76,7 +76,7 @@ const Searchpage = ({ question }: { question: any[] }) => {
             <Navbar mode="sticky" />
             <Hero length="md:h-[300px]">
                 <h3 className="font-bold text-2xl flex justify-center">Problems</h3>
-                <Search onEnter={(searchTerm) => Router.push(`/search?keyword=${searchTerm.toLowerCase()}`)} />
+                <Search defaultValue={searchdata}/>
             </Hero>
             <section className="xl:max-w-[120ch] mx-4 mt-4 xl:mx-auto">
                 <div className="flex justify-between flex-col sm:flex-row py-4 gap-4 sm:justify-right">
