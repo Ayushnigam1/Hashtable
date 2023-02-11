@@ -8,7 +8,7 @@ export function TableOfContents(props: { links: string[], section: string }) {
     console.log(router.asPath)
     const items = props.links.map((item: string, index: number) => (
         <Link
-            className={`px-6 py-4 capitalize ${router.asPath == `/${props.section}/${item}` ? 'text-sky-500 bg-gray-400 dark:bg-gray-800': 'text-gray-800 dark:text-gray-200'}`}
+            className={`px-6 py-4 capitalize ${router.asPath == `/${props.section}/${item}` ? 'text-sky-500 bg-gray-100 dark:bg-gray-800': 'text-gray-800 dark:text-gray-200'}`}
             href={`/${props.section}/${item}`}
             key={index}
         >

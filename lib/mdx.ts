@@ -11,7 +11,7 @@ export async function generateMdx(source: string) {
         parseFrontmatter: true,
         mdxOptions: {
             remarkPlugins: [math],
-            rehypePlugins: [latex, slug, [toc, {position: 'beforebegin'}]]
+            rehypePlugins: [latex, slug, toc]
         }
     })
     return mdxSource
