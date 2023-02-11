@@ -12,6 +12,11 @@ body {
     padding: 0 !important;
 }
 
+.prose pre {
+    margin: 0 !important;
+    @apply rounded-t-none
+}
+
 .toc {
     @apply xl:fixed xl:right-[4rem] text-base xl:top-[4rem]
 }
@@ -19,4 +24,20 @@ body {
 .toc::before {
     content: "Table of contents";
     @apply text-lg font-semibold
+}
+
+.mantine-Tabs-tabsList {
+    @apply border-gray-500
+}
+
+.mantine-Tabs-tabsList > button {
+    @apply text-gray-900 dark:text-gray-200
+}
+
+.mantine-Tabs-tabsList > button[data-active] {
+    @apply text-gray-900 dark:text-gray-200 dark:border-gray-500
+}
+
+.mantine-Tabs-tabsList > button::before {
+    @apply dark:bg-black bg-gray-800 !important
 }

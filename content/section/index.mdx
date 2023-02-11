@@ -37,8 +37,25 @@ Here's a numbered list:
 Note again how the actual text starts at 4 columns in (4 characters
 from the left side). Here's a code sample:
 
-```python
-n = int(input())
-for i in range(n):
-    print()
-```
+<Tabs variant="outline" defaultValue="Python">
+    <Tabs.List>
+        <Tabs.Tab value="Python">Python</Tabs.Tab>
+        <Tabs.Tab value="C++">C++</Tabs.Tab>
+    </Tabs.List>
+    <Tabs.Panel value="Python">
+        ```python
+        n = int(input())
+        for i in range(n):
+            print(i)
+        ```
+    </Tabs.Panel>
+    <Tabs.Panel value="C++">
+        ```cpp
+        int n;
+        cin << n;
+        for(int i = 0; i < n; i++) {
+            cout << i;
+        }
+        ```
+    </Tabs.Panel>
+</Tabs>

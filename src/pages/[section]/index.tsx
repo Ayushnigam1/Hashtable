@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import React, { useEffect, useState } from "react";
 import { Footer } from "@/components/Footer";
 import Head from "next/head";
@@ -8,6 +7,10 @@ import { getSectionIndex, getSections, getSubSections } from "lib/sections";
 import { BreadCrumbs } from "@/components/BreadCrumbs";
 import { MDXRemote } from "next-mdx-remote";
 import { TableOfContents } from "@/components/Tableofcontent";
+import Navbar from "@/components/Navbar";
+import { Tabs } from "@mantine/core";
+
+const components = {Tabs}
 
 export async function getStaticPaths() {
     const sections = await getSections();
@@ -46,7 +49,7 @@ const Section = ({ source, subsection, section }: any) => {
                         <div className="h-8"/>
                         <article className="xl:w-[80ch] m-auto prose lg:prose-xl dark:prose-invert text-justify">
                             <h2 className="capitalize">{source.frontmatter.title}</h2>
-                            {source && <MDXRemote {...source} />}
+                            {source && <MDXRemote {...source} components={components} />}
                         </article>
                         <div className="h-8"/>
                     </div>
