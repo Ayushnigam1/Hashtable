@@ -31,7 +31,7 @@ const Navbar = (props: { mode?: 'sticky' | 'fixed' }) => {
                     }  z-50 transition-colors top-0 border-0`}
             >
                 <nav className="min-h-[64px] flex justify-between items-center ml-10 mr-10 ">
-                    <a href="\" className="text-xl">
+                    <a href="\" className="text-xl font-semibold">
                         Hashtable
                     </a>
                     <span>

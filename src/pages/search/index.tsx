@@ -4,29 +4,9 @@ import { useRouter } from "next/router"
 import Navbar from "@/components/Navbar"
 import Search from "@/components/Search"
 import { Hero } from "@/components/Hero"
-import Router from "next/router"
 import Tag from "@/components/Tag"
 import { search } from "lib/search"
 import { Button, Select } from "@mantine/core"
-
-const tp = [
-    "Array",
-    "Linked List",
-    "Stack",
-    "Queue",
-    "Graph",
-    "Trees"
-]
-
-const tg = [
-    "Recursion",
-    "Two pointer",
-    "Merge",
-    "DP",
-    "Sorting",
-    "Linear Search",
-    "Binary search",
-]
 
 const diff = [
     { level: "Hard" },
@@ -37,24 +17,24 @@ const diff = [
 export async function getStaticProps() {
     const question: Question[] = await getQuestions();
 
-    // const sections = await getSections();
+    let topics = new Set<string>();
+    let tags = new Set<string>();
 
-    // TODO: To be replaced by topics
-    // const section = await Promise.all(
-    //   sections.map(async (section: string) => {
-    //     const sectionData = await getSectionIndex(section);
-    //     return { section, ...sectionData };
-    //   })
-    // );
+    question.forEach(q => {
+       q.topic.forEach((t: string) => topics.add(t))
+       q.tags.forEach((t: string) => tags.add(t))
+    });
 
     return {
         props: {
             question,
+            topics: Array.from(topics),
+            tags: Array.from(tags)
         },
     };
 }
 
-const Searchpage = ({ question }: { question: any[] }) => {
+const Searchpage = (props: { question: any[], topics: string[], tags: string[] }) => {
 
     const router = useRouter();
     const searchdata = router.query.keyword as string;
@@ -68,20 +48,21 @@ const Searchpage = ({ question }: { question: any[] }) => {
     };
 
     useEffect(() => {
-        if (searchdata != undefined) setQuestions(search(searchdata, tags, difficulty, topics, question))
-    }, [question, searchdata, tags, difficulty, topics])
+        if (searchdata != undefined) setQuestions(search(searchdata, tags, difficulty, topics, props.question))
+    }, [props.question, searchdata, tags, difficulty, topics])
 
     return (
         <>
             <Navbar mode="sticky" />
             <Hero length="md:h-[300px]">
                 <h3 className="font-bold text-2xl flex justify-center">Problems</h3>
-                <Search defaultValue={searchdata}/>
+                <Search defaultValue={searchdata} />
             </Hero>
             <section className="xl:max-w-[120ch] mx-4 mt-4 xl:mx-auto">
                 <div className="flex justify-between flex-col sm:flex-row py-4 gap-4 sm:justify-right">
                     <Select
                         className="flex-grow"
+                        value={difficulty}
                         placeholder="Difficulty"
                         onChange={(e) => { setDifficulty(e) }}
                         data={diff.map(d => d.level)}
@@ -89,17 +70,19 @@ const Searchpage = ({ question }: { question: any[] }) => {
                     <div className="flex-grow">
                         <Select
                             placeholder="Tags"
+                            value={tags.length > 0 ? tags[tags.length - 1] : null}
                             onChange={(e) => {
                                 if (e != undefined) setTags([...tags, e])
                             }}
-                            data={tg}
+                            data={props.tags}
                         />
                     </div>
                     <Select
                         className="flex-grow"
+                        value={topics}
                         placeholder="Topics"
                         onChange={(e) => setTopics(e)}
-                        data={tp}
+                        data={props.topics}
                     />
                     <Button className="rounded-full" onClick={(e) => {
                         setTopics(null)
@@ -156,7 +139,7 @@ const Searchpage = ({ question }: { question: any[] }) => {
                     </table>
                 </div>
             </section>
-        
+
         </>
     );
 };

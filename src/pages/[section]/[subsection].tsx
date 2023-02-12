@@ -1,11 +1,13 @@
 import Navbar from "@/components/Navbar";
-import React from "react";
+import React, { useState } from "react";
 import {Footer} from "@/components/Footer";
 import Head from "next/head";
 import { getSections, getSubsectionPost, getSubSections } from "lib/sections";
 import { BreadCrumbs } from "@/components/BreadCrumbs";
 import { MDXRemote } from "next-mdx-remote";
 import { TableOfContents } from "@/components/Tableofcontent";
+import { ActionIcon, Drawer } from "@mantine/core";
+import { FiMenu } from "react-icons/fi";
 
 export async function getStaticPaths() {
     const sections = await getSections()
@@ -36,6 +38,7 @@ export async function getStaticProps({ params }: any) {
 }
 
 const Subsection = ({ source, section, subsection }: any) => {
+    const [opened, setOpened] = useState(true);
     return (
         <>
             <Head>
@@ -45,11 +48,17 @@ const Subsection = ({ source, section, subsection }: any) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className="w-full flex">
-                <TableOfContents links={subsection} section={section}/>
+                <TableOfContents links={subsection} section={section} hidden={true}/>
+                <Drawer opened={opened} onClose={() => setOpened(false)} className="p-0" withCloseButton={false}>
+                    <TableOfContents links={subsection} section={section} hidden={false}/>
+                </Drawer>
                 <main className="flex-grow flex">
-                    <div className="flex-grow sm:w-auto relative justify-between px-4">
+                    <div className="flex-grow sm:w-auto relative justify-between xl:px-4">
+                        <nav className="xl:hidden sticky top-0 px-4 min-h-[60px] border-b border-gray-200 dark:border-gray-500 flex justify-between items-center bg-white dark:bg-gray-900 z-10">
+                            <ActionIcon onClick={() => setOpened(true)}><FiMenu size={24}/></ActionIcon>
+                        </nav>
                         <div className="h-8"/>
-                        <article className="xl:w-[80ch] m-auto prose lg:prose-xl dark:prose-invert text-justify">
+                        <article className="xl:w-[80ch] m-auto prose lg:prose-xl dark:prose-invert text-justify px-4">
                             <h2 className="capitalize">{source.frontmatter.title}</h2>
                             {source && <MDXRemote {...source} />}
                         </article>

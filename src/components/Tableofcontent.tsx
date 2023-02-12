@@ -3,7 +3,7 @@ import { TailSwitch } from '@/components/Switch'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export function TableOfContents(props: { links: string[], section: string }) {
+export function TableOfContents(props: { links: string[], section: string, hidden?: boolean }) {
     const router = useRouter()
     console.log(router.asPath)
     const items = props.links.map((item: string, index: number) => (
@@ -17,9 +17,11 @@ export function TableOfContents(props: { links: string[], section: string }) {
     ));
 
     return (
-        <Navbar className='sticky max-xl:hidden left-0 top-0 max-w-[300px] w-full bg-transparent'>
+        <Navbar className={`sticky ${props.hidden ? 'max-xl:hidden': ''} left-0 top-0 max-w-[320px] w-full bg-white dark:bg-gray-800 dark:border-gray-600`}>
             <Navbar.Section className='p-6 flex justify-between'>
-                <h2 className='text-lg font-semibold'>Hashtable</h2>
+                    <a href="\" className="text-lg font-semibold text-gray-800 dark:text-white">
+                        Hashtable
+                    </a>
                 <TailSwitch/>
             </Navbar.Section>
             <Navbar.Section className='flex flex-col'>
