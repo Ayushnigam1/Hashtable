@@ -30,7 +30,7 @@ export async function getStaticProps({ params }: any) {
 
 const Section = ({ source, subsection, section }: any) => {
 
-    const [opened, setOpened] = useState(true);
+    const [opened, setOpened] = useState(false);
 
     useEffect(() => {
         hljs.highlightAll();
